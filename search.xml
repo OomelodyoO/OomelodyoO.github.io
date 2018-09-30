@@ -20,8 +20,8 @@
         <category>计算机</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
@@ -61,6 +61,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Mysql Data Backup]]></title>
+    <url>%2F2018%2F02%2F07%2FMysql%20Data%20Backup%2F</url>
+    <content type="text"><![CDATA[1.Create sh script file1touch backup.sh 2.Copy this code and paste it into backup.sh script file123456789#bin/shMYSQLDUMP=YOUR_MYSQLDUMP_PATHMYSQL_USERNAME=YOUR_MYSQL_USERNAMEMYSQL_PASSWORD=YOUR_MYSQL_PASSWORDMYSQL_HOST=YOUR_MYSQL_HOSTMYSQL_PORT=YOUR_MYSQL_PORTMYSQL_DB=YOUR_MYSQL_DBSQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125; 3.Modify file permissions1chmod 755 ./backup.sh 4. Execute sh script file1./backup.sh]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CentOS Install Nginx]]></title>
     <url>%2F2018%2F02%2F07%2FCentOS%20Install%20Nginx%2F</url>
     <content type="text"><![CDATA[1.INSTALL123451 http://nginx.org/en/linux_packages.html##stable2.cd /etc/yum.repos.d/3.nginx.repo4.yum makecache5.yum install nginx.x86_64 2.USE123start: nginxstop: nginx -s stopreload: nginx -s reload]]></content>
@@ -70,17 +81,6 @@
       <tags>
         <tag>CentOS</tag>
         <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Mysql Data Backup]]></title>
-    <url>%2F2018%2F02%2F07%2FMysql%20Data%20Backup%2F</url>
-    <content type="text"><![CDATA[1.Create sh script file1touch backup.sh 2.Copy this code and paste it into backup.sh script file123456789#bin/shMYSQLDUMP=YOUR_MYSQLDUMP_PATHMYSQL_USERNAME=YOUR_MYSQL_USERNAMEMYSQL_PASSWORD=YOUR_MYSQL_PASSWORDMYSQL_HOST=YOUR_MYSQL_HOSTMYSQL_PORT=YOUR_MYSQL_PORTMYSQL_DB=YOUR_MYSQL_DBSQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125; 3.Modify file permissions1chmod 755 ./backup.sh 4. Execute sh script file1./backup.sh]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
       </tags>
   </entry>
 </search>
