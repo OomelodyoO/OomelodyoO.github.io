@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[什么是广义，什么是狭义]]></title>
+    <url>%2F2018%2F02%2F23%2F%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%BF%E4%B9%89%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E7%8B%AD%E4%B9%89%2F</url>
+    <content type="text"><![CDATA[广义：就是不渉及具体概念，只是一个框架，其有确定的抽象概念，但没有确定的形象概念。狭义：就是在系统中设定或区分某一相对狭窄的、片面的、局部的点、面、区域、系统，主要指某一物质系统中具有特殊的、有别于一般的、非普遍的部分。相对广义而言。广义包含狭义，例如：狭义上咱俩都是人，广义上咱俩都是动物。]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>广义</tag>
+        <tag>狭义</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Mysql]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install ShadowSocks]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>ShadowSocks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Redis]]></title>
+    <url>%2F2018%2F02%2F08%2FCentOS%20Install%20Redis%2F</url>
+    <content type="text"><![CDATA[已安装GCCREDIS下载地址12345678wget http://download.redis.io/releases/redis-3.2.3.tar.gztar xzf redis-3.2.3.tar.gzcd redis-3.2.3&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;make MALLOC=libcfirewall-cmd --zone=public --add-port=6379/tcp --permanent systemctl stop firewalld systemctl start firewalld redis.conf 末尾增加bing 0.0.0.012redis-serverredis-cli -h xxx.xxx.xxx.xxx]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python Pip Requirements]]></title>
+    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
+    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Nginx]]></title>
+    <url>%2F2018%2F02%2F07%2FCentOS%20Install%20Nginx%2F</url>
+    <content type="text"><![CDATA[1.INSTALL123451 http://nginx.org/en/linux_packages.html##stable2.cd /etc/yum.repos.d/3.nginx.repo4.yum makecache5.yum install nginx.x86_64 2.USE123start: nginxstop: nginx -s stopreload: nginx -s reload]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql Data Backup]]></title>
+    <url>%2F2018%2F02%2F07%2FMysql%20Data%20Backup%2F</url>
+    <content type="text"><![CDATA[1.Create sh script file1touch backup.sh 2.Copy this code and paste it into backup.sh script file123456789#bin/shMYSQLDUMP=YOUR_MYSQLDUMP_PATHMYSQL_USERNAME=YOUR_MYSQL_USERNAMEMYSQL_PASSWORD=YOUR_MYSQL_PASSWORDMYSQL_HOST=YOUR_MYSQL_HOSTMYSQL_PORT=YOUR_MYSQL_PORTMYSQL_DB=YOUR_MYSQL_DBSQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125; 3.Modify file permissions1chmod 755 ./backup.sh 4. Execute sh script file1./backup.sh]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+</search>
