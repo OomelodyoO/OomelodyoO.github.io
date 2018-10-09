@@ -324,6 +324,869 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-WORK模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/RabbitMQ五种模式-WORK模式/" itemprop="url">
+                  RabbitMQ五种模式(WORK模式)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/RabbitMQ五种模式-WORK模式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-WORK模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2018/09/05/RabbitMQ五种模式-WORK模式/work.jpg">
+<p>Send.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        for (int i = 0; i &lt; 50; i++) &#123;</span><br><span class="line">            String message = &quot;message:\t&quot; + i;</span><br><span class="line">            channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes());</span><br><span class="line">            System.out.println(message);</span><br><span class="line">            try &#123;</span><br><span class="line">                Thread.sleep(i * 10);</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class Recv &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv2.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class Recv2 &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line"></span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(10);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &apos;java&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = &apos;0.0.1-SNAPSHOT&apos;</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos;</span><br><span class="line">    testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/rabbit-mq" title="rabbit-mq源码地址​github.com" target="_blank" rel="noopener">rabbit-mq源码地址​github.com</a></strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-TOPICS模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/RabbitMQ五种模式-TOPICS模式/" itemprop="url">
+                  RabbitMQ五种模式(TOPICS模式)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/RabbitMQ五种模式-TOPICS模式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-TOPICS模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2018/09/05/RabbitMQ五种模式-TOPICS模式/topics.jpg">
+<p>Send.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.exchangeDeclare(EXCHANGE_NAME, &quot;topic&quot;);</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(EXCHANGE_NAME, &quot;item.broadcast&quot;, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Recv &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_topic_1&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.broadcast&quot;);</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.a&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv2.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Recv2 &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_topic_2&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.broadcast&quot;);</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.b&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &apos;java&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = &apos;0.0.1-SNAPSHOT&apos;</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos;</span><br><span class="line">    testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/rabbit-mq" title="rabbit-mq源码地址​github.com" target="_blank" rel="noopener">rabbit-mq源码地址​github.com</a></strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-SIMPLE模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" itemprop="url">
+                  RabbitMQ五种模式(SIMPLE模式)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/simple.jpg">
+<p>Send.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Recv &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, true, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &apos;java&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = &apos;0.0.1-SNAPSHOT&apos;</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos;</span><br><span class="line">    testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/rabbit-mq" title="rabbit-mq源码地址​github.com" target="_blank" rel="noopener">rabbit-mq源码地址​github.com</a></strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-P-S模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/RabbitMQ五种模式-P-S模式/" itemprop="url">
+                  RabbitMQ五种模式(P/S模式)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/RabbitMQ五种模式-P-S模式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-P-S模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2018/09/05/RabbitMQ五种模式-P-S模式/ps.jpg">
+<p>Send.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_fanout&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.exchangeDeclare(EXCHANGE_NAME, &quot;fanout&quot;);</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(EXCHANGE_NAME, &quot;&quot;, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class Recv &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_ps_1&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_fanout&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv2.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class Recv2 &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_ps_2&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_fanout&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &apos;java&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = &apos;0.0.1-SNAPSHOT&apos;</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos;</span><br><span class="line">    testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/rabbit-mq" title="rabbit-mq源码地址​github.com" target="_blank" rel="noopener">rabbit-mq源码地址​github.com</a></strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-ROUTING模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/RabbitMQ五种模式-ROUTING模式/" itemprop="url">
+                  RabbitMQ五种模式(ROUTING模式)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/RabbitMQ五种模式-ROUTING模式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-ROUTING模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2018/09/05/RabbitMQ五种模式-ROUTING模式/routing.jpg">
+<p>Send.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_direct&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.exchangeDeclare(EXCHANGE_NAME, &quot;direct&quot;);</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(EXCHANGE_NAME, &quot;insert&quot;, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Recv &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_direct_1&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_direct&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;update&quot;);</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;delete&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Recv2.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class Recv2 &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_direct_2&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_direct&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;insert&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &apos;java&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = &apos;0.0.1-SNAPSHOT&apos;</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos;</span><br><span class="line">    testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/rabbit-mq" title="rabbit-mq源码地址​github.com" target="_blank" rel="noopener">rabbit-mq源码地址​github.com</a></strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/Nginx配置ssl证书/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1150,824 +2013,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/CentOS Install ShadowSocks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/13/CentOS Install ShadowSocks/" itemprop="url">
-                  CentOS Install ShadowSocks
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-13T00:00:00+08:00">2018-02-13</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/13/CentOS Install ShadowSocks/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/13/CentOS Install ShadowSocks/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel</span><br><span class="line">yum install gcc</span><br><span class="line">yum install openssl-devel</span><br><span class="line"></span><br><span class="line">wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz</span><br><span class="line">xz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tar</span><br><span class="line">tar xvf Python-2.7.12.tar</span><br><span class="line">cd Python-2.7.12</span><br><span class="line">./configure --with-zlib=/usr/include</span><br><span class="line">make &amp;&amp; make altinstall</span><br><span class="line">cd /usr/bin</span><br><span class="line">mv python python_bak</span><br><span class="line">ln -s /usr/local/bin/python2.7 ./python</span><br><span class="line">vi yum</span><br><span class="line">cd</span><br><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br><span class="line">yum install m2crypto</span><br><span class="line">cd</span><br><span class="line">wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gz</span><br><span class="line">tar -xvf libsodium-1.0.11.tar.gz</span><br><span class="line">cd libsodium-1.0.11</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf</span><br><span class="line">ldconfig</span><br><span class="line"></span><br><span class="line">ssserver -c config -d start</span><br><span class="line">ssserver -c config -d stop</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/CentOS Install Mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/13/CentOS Install Mysql/" itemprop="url">
-                  CentOS Install Mysql
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-13T00:00:00+08:00">2018-02-13</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/13/CentOS Install Mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/13/CentOS Install Mysql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包</span><br><span class="line">2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)</span><br><span class="line">3.yum makecache</span><br><span class="line">4.yum list | grep mysql(查询mysql-server)</span><br><span class="line">5.yum install mysql-community-server.x86_64 进行安装</span><br><span class="line">6.service mysqld restart</span><br><span class="line">7.cat /var/log/mysqld.log | grep password</span><br><span class="line">8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)</span><br><span class="line">9.systemctl restart mysqld.service (重启服务)</span><br><span class="line">10.mysql -uroot -p (登录mysql)</span><br><span class="line">11.SET PASSWORD = PASSWORD(&apos;root&apos;);</span><br><span class="line">    ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER;</span><br><span class="line">    flush privileges;</span><br><span class="line">12.</span><br><span class="line">client端用户命令：</span><br><span class="line">GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;</span><br><span class="line">(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)</span><br><span class="line">(</span><br><span class="line">打开MYSQL:service mysqld start</span><br><span class="line">关闭MYSQL:service mysqld stop</span><br><span class="line">)</span><br><span class="line">13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙)</span><br><span class="line">    systemctl stop firewalld</span><br><span class="line">    systemctl start firewalld</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/Python Pip Requirements/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/Python Pip Requirements/" itemprop="url">
-                  Python Pip Requirements
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-08T00:00:00+08:00">2018-02-08</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/08/Python Pip Requirements/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/08/Python Pip Requirements/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//导出requirements</span><br><span class="line">pip freeze &gt; requirements.txt</span><br><span class="line">//导入requirements</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/CentOS Install Redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/CentOS Install Redis/" itemprop="url">
-                  CentOS Install Redis
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-08T00:00:00+08:00">2018-02-08</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/08/CentOS Install Redis/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/08/CentOS Install Redis/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>已安装GCC<br><a href="http://redis.io/download" target="_blank" rel="noopener">REDIS下载地址</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.2.3.tar.gz</span><br><span class="line">tar xzf redis-3.2.3.tar.gz</span><br><span class="line">cd redis-3.2.3</span><br><span class="line">&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;</span><br><span class="line">make MALLOC=libc</span><br><span class="line">firewall-cmd --zone=public --add-port=6379/tcp --permanent</span><br><span class="line">    systemctl stop firewalld</span><br><span class="line">    systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
-<p>redis.conf 末尾增加bing 0.0.0.0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br><span class="line">redis-cli -h xxx.xxx.xxx.xxx</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/CentOS Install Nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/07/CentOS Install Nginx/" itemprop="url">
-                  CentOS Install Nginx
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-07T00:00:00+08:00">2018-02-07</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/07/CentOS Install Nginx/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/07/CentOS Install Nginx/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-INSTALL"><a href="#1-INSTALL" class="headerlink" title="1.INSTALL"></a>1.INSTALL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 http://nginx.org/en/linux_packages.html##stable</span><br><span class="line">2.cd /etc/yum.repos.d/</span><br><span class="line">3.nginx.repo</span><br><span class="line">4.yum makecache</span><br><span class="line">5.yum install nginx.x86_64</span><br></pre></td></tr></table></figure>
-<h2 id="2-USE"><a href="#2-USE" class="headerlink" title="2.USE"></a>2.USE</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start: nginx</span><br><span class="line">stop: nginx -s stop</span><br><span class="line">reload: nginx -s reload</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2019,7 +2064,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2075,7 +2120,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2297,9 +2344,7 @@
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
   
   
-    
-  
-  <script src="https://cdn.jsdelivr.net/npm/valine@1.1.8/dist/Valine.min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
