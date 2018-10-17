@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="1.（.key）文件通常指私钥。 openssl genrsa -des3 -out zhang.key 1024 2.（.csr）文件csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。 openssl req -new -key zhang.key -out zhang.csr 3.">
+  <meta name="description" content="1.（.key）文件通常指私钥。 openssl genrsa -des3 -out zhang.key 1024 2.（.csr）文件csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。 openssl req -new -key zhang.key -out zhang.csr">
 <meta name="keywords" content="Openssl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Openssl 自签证书">
 <meta property="og:url" content="http://yoursite.com/2018/09/04/Openssl 自签证书/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="1.（.key）文件通常指私钥。 openssl genrsa -des3 -out zhang.key 1024 2.（.csr）文件csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。 openssl req -new -key zhang.key -out zhang.csr 3.">
+<meta property="og:description" content="1.（.key）文件通常指私钥。 openssl genrsa -des3 -out zhang.key 1024 2.（.csr）文件csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。 openssl req -new -key zhang.key -out zhang.csr">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-09-04T08:13:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Openssl 自签证书">
-<meta name="twitter:description" content="1.（.key）文件通常指私钥。 openssl genrsa -des3 -out zhang.key 1024 2.（.csr）文件csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。 openssl req -new -key zhang.key -out zhang.csr 3.">
+<meta name="twitter:description" content="1.（.key）文件通常指私钥。 openssl genrsa -des3 -out zhang.key 1024 2.（.csr）文件csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。 openssl req -new -key zhang.key -out zhang.csr">
 
 
 
@@ -453,7 +453,7 @@
         <h2 id="1-（-key）文件"><a href="#1-（-key）文件" class="headerlink" title="1.（.key）文件"></a>1.（.key）文件</h2><p>通常指私钥。</p>
 <p>openssl genrsa -des3 -out zhang.key 1024</p>
 <h2 id="2-（-csr）文件"><a href="#2-（-csr）文件" class="headerlink" title="2.（.csr）文件"></a>2.（.csr）文件</h2><p>csr 是Certificate Signing Request的缩写，即证书签名请求，这不是证书，可以简单理解成公钥，生成证书时要把这个提交给权威的证书颁发机构。</p>
-<p>openssl req -new -key zhang.key -out zhang.csr</p>
+<p>openssl req -new -key zhang.key -out zhang.csr<br><a id="more"></a></p>
 <h2 id="3-（-crt）"><a href="#3-（-crt）" class="headerlink" title="3.（.crt）"></a>3.（.crt）</h2><p>crt 即 certificate的缩写，即证书。</p>
 <p>openssl x509 -req -days 365 -in zhang.csr -signkey zhang.key -out zhang.crt</p>
 
@@ -688,6 +688,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gino2010.github.io/" title="gino" target="_blank">gino</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

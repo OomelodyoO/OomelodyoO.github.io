@@ -108,27 +108,25 @@
 
 
 
-  <meta name="description" content="Send.java 123456789101112131415161718public class Send &amp;#123;    public static String EXCHANGE_NAME = &amp;quot;test_exchange_topic&amp;quot;;    public static void main(String[] args) throws IOException, Ti">
-<meta name="keywords" content="RabbitMQ">
+  <meta name="description" content="FileChannel 从文件中读写数据。FileChannelTest.java12345678910111213141516171819public class FileChannelTest &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        FileChannel inputFi">
+<meta name="keywords" content="Java,Nio,Channel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RabbitMQ五种模式(TOPICS模式)">
-<meta property="og:url" content="http://yoursite.com/2018/09/05/RabbitMQ五种模式-TOPICS模式/index.html">
+<meta property="og:title" content="（二）JAVA NIO CHANNEL">
+<meta property="og:url" content="http://yoursite.com/2018/09/11/（二）JAVA NIO CHANNEL/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="Send.java 123456789101112131415161718public class Send &amp;#123;    public static String EXCHANGE_NAME = &amp;quot;test_exchange_topic&amp;quot;;    public static void main(String[] args) throws IOException, Ti">
+<meta property="og:description" content="FileChannel 从文件中读写数据。FileChannelTest.java12345678910111213141516171819public class FileChannelTest &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        FileChannel inputFi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/09/05/RabbitMQ五种模式-TOPICS模式/topics.jpg">
-<meta property="og:updated_time" content="2018-09-04T16:00:00.000Z">
+<meta property="og:updated_time" content="2018-09-10T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RabbitMQ五种模式(TOPICS模式)">
-<meta name="twitter:description" content="Send.java 123456789101112131415161718public class Send &amp;#123;    public static String EXCHANGE_NAME = &amp;quot;test_exchange_topic&amp;quot;;    public static void main(String[] args) throws IOException, Ti">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/05/RabbitMQ五种模式-TOPICS模式/topics.jpg">
+<meta name="twitter:title" content="（二）JAVA NIO CHANNEL">
+<meta name="twitter:description" content="FileChannel 从文件中读写数据。FileChannelTest.java12345678910111213141516171819public class FileChannelTest &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        FileChannel inputFi">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-TOPICS模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/11/（二）JAVA NIO CHANNEL/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>RabbitMQ五种模式(TOPICS模式) | BLOG</title>
+  <title>（二）JAVA NIO CHANNEL | BLOG</title>
   
 
 
@@ -340,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-TOPICS模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/11/（二）JAVA NIO CHANNEL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
@@ -357,7 +355,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RabbitMQ五种模式(TOPICS模式)
+          <h1 class="post-title" itemprop="name headline">（二）JAVA NIO CHANNEL
               
             
           </h1>
@@ -382,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+              <time title="创建时间：2018-09-11 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-11T00:00:00+08:00">2018-09-11</time>
             
 
             
@@ -415,8 +413,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/05/RabbitMQ五种模式-TOPICS模式/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-TOPICS模式/" itemprop="commentCount"></span>
+                <a href="/2018/09/11/（二）JAVA NIO CHANNEL/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/11/（二）JAVA NIO CHANNEL/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -452,16 +450,13 @@
       
 
       
-        <img src="/2018/09/05/RabbitMQ五种模式-TOPICS模式/topics.jpg">
-<p>Send.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.exchangeDeclare(EXCHANGE_NAME, &quot;topic&quot;);</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(EXCHANGE_NAME, &quot;item.broadcast&quot;, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Recv.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Recv &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_topic_1&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.broadcast&quot;);</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.a&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Recv2.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Recv2 &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue_topic_2&quot;;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.broadcast&quot;);</span><br><span class="line">        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, &quot;item.b&quot;);</span><br><span class="line">        channel.basicQos(1);</span><br><span class="line">        DefaultConsumer consumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;);</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2 * 1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                channel.basicAck(envelope.getDeliveryTag(), false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, false, consumer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>build.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &apos;java&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = &apos;0.0.1-SNAPSHOT&apos;</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos;</span><br><span class="line">    testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/rabbit-mq" title="rabbit-mq源码地址​github.com" target="_blank" rel="noopener">rabbit-mq源码地址​github.com</a></strong></p>
+        <h4 id="FileChannel-从文件中读写数据。"><a href="#FileChannel-从文件中读写数据。" class="headerlink" title="FileChannel 从文件中读写数据。"></a>FileChannel 从文件中读写数据。</h4><p>FileChannelTest.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class FileChannelTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        FileChannel inputFileChannel = new FileInputStream(&quot;file.text absolute path&quot;).getChannel();</span><br><span class="line">        ByteBuffer readBuffer = ByteBuffer.allocate(100);</span><br><span class="line">        inputFileChannel.read(readBuffer);</span><br><span class="line">        readBuffer.flip();</span><br><span class="line">        for (int i = 0; i &lt; readBuffer.limit(); i++) &#123;</span><br><span class="line">            System.out.println((char) readBuffer.get());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        FileChannel outputFileChannel = new FileOutputStream(&quot;file.text absolute path&quot;, true).getChannel();</span><br><span class="line">        ByteBuffer writeBuffer = ByteBuffer.wrap(&quot;TOM&quot;.getBytes());</span><br><span class="line">        outputFileChannel.write(writeBuffer);</span><br><span class="line"></span><br><span class="line">        inputFileChannel.close();</span><br><span class="line">        outputFileChannel.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="DatagramChannel-能通过UDP读写网络中的数据。"><a href="#DatagramChannel-能通过UDP读写网络中的数据。" class="headerlink" title="DatagramChannel 能通过UDP读写网络中的数据。"></a>DatagramChannel 能通过UDP读写网络中的数据。</h4><p>DatagramChannelServer.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class DatagramChannelServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        DatagramChannel channel = DatagramChannel.open();</span><br><span class="line">        channel.socket().bind(new InetSocketAddress(9999));</span><br><span class="line"></span><br><span class="line">        ByteBuffer buf = ByteBuffer.allocate(48);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            channel.receive(buf);</span><br><span class="line">            buf.flip();</span><br><span class="line">            for (int i = 0; i &lt; buf.limit(); i++) &#123;</span><br><span class="line">                System.out.println((char) buf.get());</span><br><span class="line">            &#125;</span><br><span class="line">            buf.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>DatagramChannelClient.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class DatagramChannelClient &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        DatagramChannel channel = DatagramChannel.open();</span><br><span class="line">        ByteBuffer buf = ByteBuffer.allocate(48);</span><br><span class="line">        buf = buf.wrap(&quot;AA&quot;.getBytes());</span><br><span class="line">        channel.send(buf, new InetSocketAddress(&quot;localhost&quot;, 9999));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="ServerSocketChannel-可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。"><a href="#ServerSocketChannel-可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。" class="headerlink" title="ServerSocketChannel 可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。"></a>ServerSocketChannel 可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。</h4><h4 id="SocketChannel-能通过TCP读写网络中的数据。"><a href="#SocketChannel-能通过TCP读写网络中的数据。" class="headerlink" title="SocketChannel 能通过TCP读写网络中的数据。"></a>SocketChannel 能通过TCP读写网络中的数据。</h4><p>NioChannelServer.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class NioChannelServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line">        serverSocketChannel.socket().bind(new InetSocketAddress(9999));</span><br><span class="line">        ByteBuffer buf = ByteBuffer.allocate(48);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            SocketChannel channel = serverSocketChannel.accept();</span><br><span class="line">            while (true) &#123;</span><br><span class="line">                channel.read(buf);</span><br><span class="line">                buf.flip();</span><br><span class="line">                for (int i = 0; i &lt; buf.limit(); i++) &#123;</span><br><span class="line">                    System.out.println((char) buf.get());</span><br><span class="line">                &#125;</span><br><span class="line">                buf.clear();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>NioChannelClient.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class NioChannelClient &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        SocketChannel socketChannel = SocketChannel.open();</span><br><span class="line">        socketChannel.connect(new InetSocketAddress(&quot;localhost&quot;, 9999));</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            Scanner input = new Scanner(System.in);</span><br><span class="line">            socketChannel.write(ByteBuffer.wrap(input.nextLine().getBytes()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/nio" title="Nio源码地址​github.com" target="_blank" rel="noopener">Nio源码地址​github.com</a></strong></p>
 
       
     </div>
@@ -482,7 +477,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Nio/" rel="tag"># Nio</a>
+          
+            <a href="/tags/Channel/" rel="tag"># Channel</a>
           
         </div>
       
@@ -495,8 +494,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/05/RabbitMQ五种模式-ROUTING模式/" rel="next" title="RabbitMQ五种模式(ROUTING模式)">
-                <i class="fa fa-chevron-left"></i> RabbitMQ五种模式(ROUTING模式)
+              <a href="/2018/09/10/（一）JAVA NIO BUFFER/" rel="next" title="（一）JAVA NIO BUFFER">
+                <i class="fa fa-chevron-left"></i> （一）JAVA NIO BUFFER
               </a>
             
           </div>
@@ -505,8 +504,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" rel="prev" title="RabbitMQ五种模式(SIMPLE模式)">
-                RabbitMQ五种模式(SIMPLE模式) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/12/（三）JAVA NIO SELECTOR/" rel="prev" title="（三）JAVA NIO SELECTOR">
+                （三）JAVA NIO SELECTOR <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -555,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -686,6 +694,20 @@
 
           
           
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gino2010.github.io/" title="gino" target="_blank">gino</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
 
           
             
@@ -695,6 +717,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#FileChannel-从文件中读写数据。"><span class="nav-number">1.</span> <span class="nav-text">FileChannel 从文件中读写数据。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DatagramChannel-能通过UDP读写网络中的数据。"><span class="nav-number">2.</span> <span class="nav-text">DatagramChannel 能通过UDP读写网络中的数据。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServerSocketChannel-可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。"><span class="nav-number">3.</span> <span class="nav-text">ServerSocketChannel 可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SocketChannel-能通过TCP读写网络中的数据。"><span class="nav-number">4.</span> <span class="nav-text">SocketChannel 能通过TCP读写网络中的数据。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

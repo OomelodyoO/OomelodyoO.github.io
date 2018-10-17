@@ -452,6 +452,7 @@
       
         <h2 id="1-Create-sh-script-file"><a href="#1-Create-sh-script-file" class="headerlink" title="1.Create sh script file"></a>1.Create sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch backup.sh</span><br></pre></td></tr></table></figure>
 <h2 id="2-Copy-this-code-and-paste-it-into-backup-sh-script-file"><a href="#2-Copy-this-code-and-paste-it-into-backup-sh-script-file" class="headerlink" title="2.Copy this code and paste it into backup.sh script file"></a>2.Copy this code and paste it into backup.sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#bin/sh</span><br><span class="line">MYSQLDUMP=YOUR_MYSQLDUMP_PATH</span><br><span class="line">MYSQL_USERNAME=YOUR_MYSQL_USERNAME</span><br><span class="line">MYSQL_PASSWORD=YOUR_MYSQL_PASSWORD</span><br><span class="line">MYSQL_HOST=YOUR_MYSQL_HOST</span><br><span class="line">MYSQL_PORT=YOUR_MYSQL_PORT</span><br><span class="line">MYSQL_DB=YOUR_MYSQL_DB</span><br><span class="line">SQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;</span><br><span class="line">$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="3-Modify-file-permissions"><a href="#3-Modify-file-permissions" class="headerlink" title="3.Modify file permissions"></a>3.Modify file permissions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 ./backup.sh</span><br></pre></td></tr></table></figure>
 <h2 id="4-Execute-sh-script-file"><a href="#4-Execute-sh-script-file" class="headerlink" title="4. Execute sh script file"></a>4. Execute sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./backup.sh</span><br></pre></td></tr></table></figure>
 
@@ -682,6 +683,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gino2010.github.io/" title="gino" target="_blank">gino</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

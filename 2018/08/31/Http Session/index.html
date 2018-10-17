@@ -453,6 +453,7 @@
         <h2 id="1-Cookie简介"><a href="#1-Cookie简介" class="headerlink" title="1.Cookie简介"></a>1.Cookie简介</h2><p>Cookie 是在 HTTP 协议下，服务器或脚本可以维护客户工作站上信息的一种方式。Cookie 是由 Web 服务器保存在用户浏览器（客户端）上的小文本文件，它可以包含有关用户的信息。无论何时用户链接到服务器，Web 站点都可以访问 Cookie 信息。</p>
 <p>目前有些 Cookie 是临时的，有些则是持续的。临时的 Cookie 只在浏览器上保存一段规定的时间，一旦超过规定的时间，该 Cookie 就会被系统清除。</p>
 <p>持续的 Cookie 则保存在用户的 Cookie 文件中，下一次用户返回时，仍然可以对它进行调用。在 Cookie 文件中保存 Cookie，有些用户担心 Cookie 中的用户信息被一些别有用心的人窃取，而造成一定的损害。其实，网站以外的用户无法跨过网站来获得 Cookie 信息。如果因为这种担心而屏蔽 Cookie，肯定会因此拒绝访问许多站点页面。因为，当今有许多 Web 站点开发人员使用 Cookie 技术，例如 Session 对象的使用就离不开 Cookie 的支持。</p>
+<a id="more"></a>
 <h2 id="2-Session简介"><a href="#2-Session简介" class="headerlink" title="2.Session简介"></a>2.Session简介</h2><p>Session 是 用于保持状态的基于 Web服务器的方法。Session 允许通过将对象存储在 Web服务器的内存中在整个用户会话过程中保持任何对象。</p>
 <h2 id="3-实例代码"><a href="#3-实例代码" class="headerlink" title="3.实例代码"></a>3.实例代码</h2><p>SessionServlet.java</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line"></span><br><span class="line">import javax.servlet.annotation.WebServlet;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@WebServlet(&quot;/session&quot;)</span><br><span class="line"></span><br><span class="line">public class SessionServletextends HttpServlet &#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line"></span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException &#123;</span><br><span class="line"></span><br><span class="line">req.setAttribute(&quot;sessionID&quot;, req.getSession().getId());</span><br><span class="line"></span><br><span class="line">        req.getRequestDispatcher(&quot;session.jsp&quot;).forward(req, resp);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -693,6 +694,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gino2010.github.io/" title="gino" target="_blank">gino</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
