@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/Mysql Data Backup/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/CentOS Install Nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
@@ -353,8 +353,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/07/Mysql Data Backup/" itemprop="url">
-                  Mysql Data Backup
+                <a class="post-title-link" href="/2018/02/07/CentOS Install Nginx/" itemprop="url">
+                  CentOS Install Nginx
                 </a>
               
             
@@ -413,8 +413,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/07/Mysql Data Backup/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/07/Mysql Data Backup/" itemprop="commentCount"></span>
+                <a href="/2018/02/07/CentOS Install Nginx/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/07/CentOS Install Nginx/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -443,11 +443,10 @@
 
       
         
-          <h2 id="1-Create-sh-script-file"><a href="#1-Create-sh-script-file" class="headerlink" title="1.Create sh script file"></a>1.Create sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch backup.sh</span><br></pre></td></tr></table></figure>
-<h2 id="2-Copy-this-code-and-paste-it-into-backup-sh-script-file"><a href="#2-Copy-this-code-and-paste-it-into-backup-sh-script-file" class="headerlink" title="2.Copy this code and paste it into backup.sh script file"></a>2.Copy this code and paste it into backup.sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#bin/sh</span><br><span class="line">MYSQLDUMP=YOUR_MYSQLDUMP_PATH</span><br><span class="line">MYSQL_USERNAME=YOUR_MYSQL_USERNAME</span><br><span class="line">MYSQL_PASSWORD=YOUR_MYSQL_PASSWORD</span><br><span class="line">MYSQL_HOST=YOUR_MYSQL_HOST</span><br><span class="line">MYSQL_PORT=YOUR_MYSQL_PORT</span><br><span class="line">MYSQL_DB=YOUR_MYSQL_DB</span><br><span class="line">SQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;</span><br><span class="line">$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="1-INSTALL"><a href="#1-INSTALL" class="headerlink" title="1.INSTALL"></a>1.INSTALL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 http://nginx.org/en/linux_packages.html##stable</span><br><span class="line">2.cd /etc/yum.repos.d/</span><br><span class="line">3.nginx.repo</span><br><span class="line">4.yum makecache</span><br><span class="line">5.yum install nginx.x86_64</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/07/Mysql Data Backup/#more" rel="contents">
+            <a class="btn" href="/2018/02/07/CentOS Install Nginx/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
