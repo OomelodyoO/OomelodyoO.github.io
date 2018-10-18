@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Windows Install ZooKeeper]]></title>
     <url>%2F2018%2F10%2F17%2FWindows%20Install%20ZooKeeper%2F</url>
-    <content type="text"><![CDATA[笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压 3.配置使用 进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数 参数名 参数值 备注 dataDir F:\zookeeper-3.4.13\data 数据存放位置 dataLogDir F:\zookeeper-3.4.13\log 日志存放位置 clientPort 2181 开启端口号 4.启动Server1zkServer.cmd 5.启动Client1zkCli.cmd 6.Client命令]]></content>
+    <content type="text"><![CDATA[笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压 3.配置参数 进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数 1234567891011121314151617# 服务器客户端心跳间隔（毫秒）tickTime=2000# 初始化连接忍受多少个tickTime时间间隔initLimit=10# leader与follower发送消息，请求应答时间，不能超过多少个tickTimesyncLimit=5# 数据存放位置dataDir=F:\\zookeeper-3.4.13\\data# 日志存放位置dataLogDir=F:\\zookeeper-3.4.13\\log# 开启端口号clientPort=2181# server.X=A:B:C X-代表服务器编号 A-代表ip B和C-代表端口，这个端口用来系统之间通信# 配置集群 需要在dataDir文件内增加myid文件，文件内容为相应服务器编号server.1=localhost:2888:3888server.2=localhost:2889:3889server.3=localhost:2890:3890 4.启动Server:1zkServer.cmd Client1zkCli.cmd 5.授权管理ZOOKEEPER权限分为: CREATE: 你可以创建子节点。 READ: 你可以获取节点数据以及当前节点的子节点列表。 WRITE: 你可以为节点设置数据。 DELETE: 你可以删除子节点。 ADMIN: 可以为节点设置权限。CreateMode节点创建方式 PERSISTENT：客户端与zookeeper断开连接后，该节点依旧存在 PERSISTENT_SEQUENTIAL：客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号 EPHEMERAL：客户端与zookeeper断开连接后，该节点被删除 EPHEMERAL_SEQUENTIAL：客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号 ZOOKEEPER命令:创建node 1create /acl acl 查看节点列表1ls / 查看节点信息1get / 设置节点信息1set / info 删除节点1delete / 通过setAcl设置用户名和密码12setAcl path digest:username:base64(sha1(password)):crwdasetAcl /acl digest:zookeeper:4lvlzsipXVaEhXMd+2qMrLc0at8=:r 认证1addauth digest username:password zookeeper源码地址​github.com]]></content>
       <categories>
         <category>计算机</category>
       </categories>
@@ -200,18 +200,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python Pip Requirements]]></title>
-    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
-    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Pip</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[CentOS Install Redis]]></title>
     <url>%2F2018%2F02%2F08%2FCentOS%20Install%20Redis%2F</url>
     <content type="text"><![CDATA[已安装GCCREDIS下载地址12345678wget http://download.redis.io/releases/redis-3.2.3.tar.gztar xzf redis-3.2.3.tar.gzcd redis-3.2.3&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;make MALLOC=libcfirewall-cmd --zone=public --add-port=6379/tcp --permanent systemctl stop firewalld systemctl start firewalld redis.conf 末尾增加bing 0.0.0.012redis-serverredis-cli -h xxx.xxx.xxx.xxx]]></content>
@@ -221,6 +209,18 @@
       <tags>
         <tag>CentOS</tag>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python Pip Requirements]]></title>
+    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
+    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pip</tag>
       </tags>
   </entry>
   <entry>

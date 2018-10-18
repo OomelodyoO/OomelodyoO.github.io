@@ -108,20 +108,19 @@
 
 
 
-  <meta name="description" content="笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置使用  进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数        参数名 参数值 备注     dataDi">
+  <meta name="description" content="笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置参数 进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数">
 <meta name="keywords" content="ZooKeeper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows Install ZooKeeper">
 <meta property="og:url" content="http://yoursite.com/2018/10/17/Windows Install ZooKeeper/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置使用  进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数        参数名 参数值 备注     dataDi">
+<meta property="og:description" content="笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置参数 进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/10/17/Windows%20Install%20ZooKeeper/1.JPG">
-<meta property="og:image" content="http://yoursite.com/2018/10/17/Windows%20Install%20ZooKeeper/2.JPG">
 <meta property="og:updated_time" content="2018-10-17T06:25:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Install ZooKeeper">
-<meta name="twitter:description" content="笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置使用  进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数        参数名 参数值 备注     dataDi">
+<meta name="twitter:description" content="笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。 1.下载地址ZooKeeper下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置参数 进入conf文件夹 复制zoo_sample.cfg文件为zoo.cfg 配置参数">
 <meta name="twitter:image" content="http://yoursite.com/2018/10/17/Windows%20Install%20ZooKeeper/1.JPG">
 
 
@@ -460,43 +459,40 @@
         <p>笔者认为只要能在Windows下运行的项目，在MacOS、Linux出现问题的概率会很小，所以此次选择在Windows环境下安装运行zookeeper项目。</p>
 <h5 id="1-下载地址"><a href="#1-下载地址" class="headerlink" title="1.下载地址"></a>1.下载地址</h5><p><strong><a href="https://www.apache.org/dyn/closer.cgi/zookeeper/" title="ZooKeeper下载地址" target="_blank" rel="noopener">ZooKeeper下载地址</a></strong></p>
 <h5 id="2-解压安装"><a href="#2-解压安装" class="headerlink" title="2.解压安装"></a>2.解压安装</h5><p>使用解压工具对压缩包进行解压<br><img src="/2018/10/17/Windows%20Install%20ZooKeeper/1.JPG">  </p>
-<h5 id="3-配置使用"><a href="#3-配置使用" class="headerlink" title="3.配置使用"></a>3.配置使用</h5><blockquote>
-<ul>
+<h5 id="3-配置参数"><a href="#3-配置参数" class="headerlink" title="3.配置参数"></a>3.配置参数</h5><ul>
 <li>进入conf文件夹</li>
 <li>复制zoo_sample.cfg文件为zoo.cfg</li>
-<li>配置参数  </li>
+<li>配置参数  <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 服务器客户端心跳间隔（毫秒）</span><br><span class="line">tickTime=2000</span><br><span class="line"># 初始化连接忍受多少个tickTime时间间隔</span><br><span class="line">initLimit=10</span><br><span class="line"># leader与follower发送消息，请求应答时间，不能超过多少个tickTime</span><br><span class="line">syncLimit=5</span><br><span class="line"># 数据存放位置</span><br><span class="line">dataDir=F:\\zookeeper-3.4.13\\data</span><br><span class="line"># 日志存放位置</span><br><span class="line">dataLogDir=F:\\zookeeper-3.4.13\\log</span><br><span class="line"># 开启端口号</span><br><span class="line">clientPort=2181</span><br><span class="line"># server.X=A:B:C X-代表服务器编号 A-代表ip B和C-代表端口，这个端口用来系统之间通信</span><br><span class="line"># 配置集群 需要在dataDir文件内增加myid文件，文件内容为相应服务器编号</span><br><span class="line">server.1=localhost:2888:3888</span><br><span class="line">server.2=localhost:2889:3889</span><br><span class="line">server.3=localhost:2890:3890</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>参数值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dataDir</td>
-<td>F:\zookeeper-3.4.13\data</td>
-<td>数据存放位置</td>
-</tr>
-<tr>
-<td>dataLogDir</td>
-<td>F:\zookeeper-3.4.13\log</td>
-<td>日志存放位置</td>
-</tr>
-<tr>
-<td>clientPort</td>
-<td>2181</td>
-<td>开启端口号</td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<h5 id="4-启动Server"><a href="#4-启动Server" class="headerlink" title="4.启动Server"></a>4.启动Server</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.cmd</span><br></pre></td></tr></table></figure>
-<h5 id="5-启动Client"><a href="#5-启动Client" class="headerlink" title="5.启动Client"></a>5.启动Client</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkCli.cmd</span><br></pre></td></tr></table></figure>
-<h5 id="6-Client命令"><a href="#6-Client命令" class="headerlink" title="6.Client命令"></a>6.Client命令</h5><img src="/2018/10/17/Windows%20Install%20ZooKeeper/2.JPG">
+<h5 id="4-启动"><a href="#4-启动" class="headerlink" title="4.启动"></a>4.启动</h5><h6 id="Server"><a href="#Server" class="headerlink" title="Server:"></a>Server:</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.cmd</span><br></pre></td></tr></table></figure>
+<h6 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkCli.cmd</span><br></pre></td></tr></table></figure>
+<h5 id="5-授权管理"><a href="#5-授权管理" class="headerlink" title="5.授权管理"></a>5.授权管理</h5><h6 id="ZOOKEEPER权限分为"><a href="#ZOOKEEPER权限分为" class="headerlink" title="ZOOKEEPER权限分为:"></a>ZOOKEEPER权限分为:</h6><ul>
+<li>CREATE: 你可以创建子节点。</li>
+<li>READ: 你可以获取节点数据以及当前节点的子节点列表。</li>
+<li>WRITE: 你可以为节点设置数据。</li>
+<li>DELETE: 你可以删除子节点。</li>
+<li>ADMIN: 可以为节点设置权限。<h6 id="CreateMode节点创建方式"><a href="#CreateMode节点创建方式" class="headerlink" title="CreateMode节点创建方式"></a>CreateMode节点创建方式</h6></li>
+<li><p>PERSISTENT：客户端与zookeeper断开连接后，该节点依旧存在</p>
+</li>
+<li><p>PERSISTENT_SEQUENTIAL：客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号</p>
+</li>
+<li><p>EPHEMERAL：客户端与zookeeper断开连接后，该节点被删除</p>
+</li>
+<li><p>EPHEMERAL_SEQUENTIAL：客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号</p>
+<h6 id="ZOOKEEPER命令"><a href="#ZOOKEEPER命令" class="headerlink" title="ZOOKEEPER命令:"></a>ZOOKEEPER命令:</h6><p>创建node</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create /acl acl</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>查看节点列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /</span><br></pre></td></tr></table></figure></p>
+<p>查看节点信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get /</span><br></pre></td></tr></table></figure></p>
+<p>设置节点信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set / info</span><br></pre></td></tr></table></figure></p>
+<p>删除节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete /</span><br></pre></td></tr></table></figure></p>
+<p>通过setAcl设置用户名和密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setAcl path digest:username:base64(sha1(password)):crwda</span><br><span class="line">setAcl /acl digest:zookeeper:4lvlzsipXVaEhXMd+2qMrLc0at8=:r</span><br></pre></td></tr></table></figure></p>
+<p>认证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addauth digest username:password</span><br></pre></td></tr></table></figure></p>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/zookeeper" title="zookeeper源码地址​github.com" target="_blank" rel="noopener">zookeeper源码地址​github.com</a></strong></p>
+
       
     </div>
 
@@ -686,8 +682,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -762,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-下载地址"><span class="nav-number">1.</span> <span class="nav-text">1.下载地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-解压安装"><span class="nav-number">2.</span> <span class="nav-text">2.解压安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-配置使用"><span class="nav-number">3.</span> <span class="nav-text">3.配置使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-启动Server"><span class="nav-number">4.</span> <span class="nav-text">4.启动Server</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-启动Client"><span class="nav-number">5.</span> <span class="nav-text">5.启动Client</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-Client命令"><span class="nav-number">6.</span> <span class="nav-text">6.Client命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-下载地址"><span class="nav-number">1.</span> <span class="nav-text">1.下载地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-解压安装"><span class="nav-number">2.</span> <span class="nav-text">2.解压安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-配置参数"><span class="nav-number">3.</span> <span class="nav-text">3.配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-启动"><span class="nav-number">4.</span> <span class="nav-text">4.启动</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Server"><span class="nav-number">4.1.</span> <span class="nav-text">Server:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Client"><span class="nav-number">4.2.</span> <span class="nav-text">Client</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-授权管理"><span class="nav-number">5.</span> <span class="nav-text">5.授权管理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ZOOKEEPER权限分为"><span class="nav-number">5.1.</span> <span class="nav-text">ZOOKEEPER权限分为:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CreateMode节点创建方式"><span class="nav-number">5.2.</span> <span class="nav-text">CreateMode节点创建方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ZOOKEEPER命令"><span class="nav-number">5.3.</span> <span class="nav-text">ZOOKEEPER命令:</span></a></li></ol></li></ol></div>
             
 
           </div>
