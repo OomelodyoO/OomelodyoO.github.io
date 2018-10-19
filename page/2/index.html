@@ -334,6 +334,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/RabbitMQ五种模式-SIMPLE模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" itemprop="url">
+                  RabbitMQ五种模式(SIMPLE模式)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-05T00:00:00+08:00">2018-09-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <img src="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/simple.jpg">
+<p>Send.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String QUEUE_NAME = &quot;test_queue&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.queueDeclare(</span><br><span class="line">                QUEUE_NAME, false, false,</span><br><span class="line">                false, null</span><br><span class="line">        );</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/Nginx配置ssl证书/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1173,169 +1343,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/CentOS Install ShadowSocks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/13/CentOS Install ShadowSocks/" itemprop="url">
-                  CentOS Install ShadowSocks
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-13T00:00:00+08:00">2018-02-13</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/13/CentOS Install ShadowSocks/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/13/CentOS Install ShadowSocks/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel</span><br><span class="line">yum install gcc</span><br><span class="line">yum install openssl-devel</span><br><span class="line"></span><br><span class="line">wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz</span><br><span class="line">xz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tar</span><br><span class="line">tar xvf Python-2.7.12.tar</span><br><span class="line">cd Python-2.7.12</span><br><span class="line">./configure --with-zlib=/usr/include</span><br><span class="line">make &amp;&amp; make altinstall</span><br><span class="line">cd /usr/bin</span><br><span class="line">mv python python_bak</span><br><span class="line">ln -s /usr/local/bin/python2.7 ./python</span><br><span class="line">vi yum</span><br><span class="line">cd</span><br><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br><span class="line">yum install m2crypto</span><br><span class="line">cd</span><br><span class="line">wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gz</span><br><span class="line">tar -xvf libsodium-1.0.11.tar.gz</span><br><span class="line">cd libsodium-1.0.11</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf</span><br><span class="line">ldconfig</span><br><span class="line"></span><br><span class="line">ssserver -c config -d start</span><br><span class="line">ssserver -c config -d stop</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/CentOS Install Mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1499,7 +1506,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/CentOS Install Redis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/CentOS Install ShadowSocks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
@@ -1518,8 +1525,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/08/CentOS Install Redis/" itemprop="url">
-                  CentOS Install Redis
+                <a class="post-title-link" href="/2018/02/13/CentOS Install ShadowSocks/" itemprop="url">
+                  CentOS Install ShadowSocks
                 </a>
               
             
@@ -1545,7 +1552,7 @@
                 
               
 
-              <time title="创建时间：2018-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-08T00:00:00+08:00">2018-02-08</time>
+              <time title="创建时间：2018-02-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-13T00:00:00+08:00">2018-02-13</time>
             
 
             
@@ -1578,8 +1585,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/08/CentOS Install Redis/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/08/CentOS Install Redis/" itemprop="commentCount"></span>
+                <a href="/2018/02/13/CentOS Install ShadowSocks/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/13/CentOS Install ShadowSocks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1608,14 +1615,9 @@
 
       
         
-          <p>已安装GCC<br><a href="http://redis.io/download" target="_blank" rel="noopener">REDIS下载地址</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.2.3.tar.gz</span><br><span class="line">tar xzf redis-3.2.3.tar.gz</span><br><span class="line">cd redis-3.2.3</span><br><span class="line">&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;</span><br><span class="line">make MALLOC=libc</span><br><span class="line">firewall-cmd --zone=public --add-port=6379/tcp --permanent</span><br><span class="line">    systemctl stop firewalld</span><br><span class="line">    systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/08/CentOS Install Redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel</span><br><span class="line">yum install gcc</span><br><span class="line">yum install openssl-devel</span><br><span class="line"></span><br><span class="line">wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz</span><br><span class="line">xz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tar</span><br><span class="line">tar xvf Python-2.7.12.tar</span><br><span class="line">cd Python-2.7.12</span><br><span class="line">./configure --with-zlib=/usr/include</span><br><span class="line">make &amp;&amp; make altinstall</span><br><span class="line">cd /usr/bin</span><br><span class="line">mv python python_bak</span><br><span class="line">ln -s /usr/local/bin/python2.7 ./python</span><br><span class="line">vi yum</span><br><span class="line">cd</span><br><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br><span class="line">yum install m2crypto</span><br><span class="line">cd</span><br><span class="line">wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gz</span><br><span class="line">tar -xvf libsodium-1.0.11.tar.gz</span><br><span class="line">cd libsodium-1.0.11</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf</span><br><span class="line">ldconfig</span><br><span class="line"></span><br><span class="line">ssserver -c config -d start</span><br><span class="line">ssserver -c config -d stop</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1830,7 +1832,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/Mysql Data Backup/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/CentOS Install Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
@@ -1849,8 +1851,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/07/Mysql Data Backup/" itemprop="url">
-                  Mysql Data Backup
+                <a class="post-title-link" href="/2018/02/08/CentOS Install Redis/" itemprop="url">
+                  CentOS Install Redis
                 </a>
               
             
@@ -1876,7 +1878,7 @@
                 
               
 
-              <time title="创建时间：2018-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-07T00:00:00+08:00">2018-02-07</time>
+              <time title="创建时间：2018-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-08T00:00:00+08:00">2018-02-08</time>
             
 
             
@@ -1909,8 +1911,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/07/Mysql Data Backup/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/07/Mysql Data Backup/" itemprop="commentCount"></span>
+                <a href="/2018/02/08/CentOS Install Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/08/CentOS Install Redis/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1939,11 +1941,10 @@
 
       
         
-          <h2 id="1-Create-sh-script-file"><a href="#1-Create-sh-script-file" class="headerlink" title="1.Create sh script file"></a>1.Create sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch backup.sh</span><br></pre></td></tr></table></figure>
-<h2 id="2-Copy-this-code-and-paste-it-into-backup-sh-script-file"><a href="#2-Copy-this-code-and-paste-it-into-backup-sh-script-file" class="headerlink" title="2.Copy this code and paste it into backup.sh script file"></a>2.Copy this code and paste it into backup.sh script file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#bin/sh</span><br><span class="line">MYSQLDUMP=YOUR_MYSQLDUMP_PATH</span><br><span class="line">MYSQL_USERNAME=YOUR_MYSQL_USERNAME</span><br><span class="line">MYSQL_PASSWORD=YOUR_MYSQL_PASSWORD</span><br><span class="line">MYSQL_HOST=YOUR_MYSQL_HOST</span><br><span class="line">MYSQL_PORT=YOUR_MYSQL_PORT</span><br><span class="line">MYSQL_DB=YOUR_MYSQL_DB</span><br><span class="line">SQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;</span><br><span class="line">$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125;</span><br></pre></td></tr></table></figure>
+          <p>已安装GCC<br><a href="http://redis.io/download" target="_blank" rel="noopener">REDIS下载地址</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.2.3.tar.gz</span><br><span class="line">tar xzf redis-3.2.3.tar.gz</span><br><span class="line">cd redis-3.2.3</span><br><span class="line">&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;</span><br><span class="line">make MALLOC=libc</span><br><span class="line">firewall-cmd --zone=public --add-port=6379/tcp --permanent</span><br><span class="line">    systemctl stop firewalld</span><br><span class="line">    systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/07/Mysql Data Backup/#more" rel="contents">
+            <a class="btn" href="/2018/02/08/CentOS Install Redis/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2035,7 +2036,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2107,7 +2108,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -473,18 +473,15 @@
 <li>READ: 你可以获取节点数据以及当前节点的子节点列表。</li>
 <li>WRITE: 你可以为节点设置数据。</li>
 <li>DELETE: 你可以删除子节点。</li>
-<li>ADMIN: 可以为节点设置权限。<h6 id="CreateMode节点创建方式"><a href="#CreateMode节点创建方式" class="headerlink" title="CreateMode节点创建方式"></a>CreateMode节点创建方式</h6></li>
-<li><p>PERSISTENT：客户端与zookeeper断开连接后，该节点依旧存在</p>
-</li>
-<li><p>PERSISTENT_SEQUENTIAL：客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号</p>
-</li>
-<li><p>EPHEMERAL：客户端与zookeeper断开连接后，该节点被删除</p>
-</li>
-<li><p>EPHEMERAL_SEQUENTIAL：客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号</p>
-<h6 id="ZOOKEEPER命令"><a href="#ZOOKEEPER命令" class="headerlink" title="ZOOKEEPER命令:"></a>ZOOKEEPER命令:</h6><p>创建node</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create /acl acl</span><br></pre></td></tr></table></figure>
-</li>
+<li>ADMIN: 可以为节点设置权限。  </li>
 </ul>
+<h6 id="CreateMode节点创建方式"><a href="#CreateMode节点创建方式" class="headerlink" title="CreateMode节点创建方式"></a>CreateMode节点创建方式</h6><ul>
+<li>PERSISTENT：客户端与zookeeper断开连接后，该节点依旧存在</li>
+<li>PERSISTENT_SEQUENTIAL：客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号</li>
+<li>EPHEMERAL：客户端与zookeeper断开连接后，该节点被删除</li>
+<li>EPHEMERAL_SEQUENTIAL：客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号  </li>
+</ul>
+<h6 id="ZOOKEEPER命令"><a href="#ZOOKEEPER命令" class="headerlink" title="ZOOKEEPER命令:"></a>ZOOKEEPER命令:</h6><p>创建node<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create /acl acl</span><br></pre></td></tr></table></figure></p>
 <p>查看节点列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /</span><br></pre></td></tr></table></figure></p>
 <p>查看节点信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get /</span><br></pre></td></tr></table></figure></p>
 <p>设置节点信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set / info</span><br></pre></td></tr></table></figure></p>
@@ -534,6 +531,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/17/Windows Install Kafka/" rel="prev" title="Windows Install Kafka">
+                Windows Install Kafka <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -610,7 +611,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -682,7 +683,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

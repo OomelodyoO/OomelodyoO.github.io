@@ -108,25 +108,27 @@
 
 
 
-  <meta name="description" content="Server.java12345678910111213141516171819202122232425public class Server &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        ServerSocket serverSocket = new ServerSocket(8">
-<meta name="keywords" content="Java,Socket">
+  <meta name="description" content="1.下载地址kafka下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置参数 配置参数">
+<meta name="keywords" content="Kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Socket">
-<meta property="og:url" content="http://yoursite.com/2018/09/06/Java Socket/index.html">
+<meta property="og:title" content="Windows Install Kafka">
+<meta property="og:url" content="http://yoursite.com/2018/10/17/Windows Install Kafka/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="Server.java12345678910111213141516171819202122232425public class Server &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        ServerSocket serverSocket = new ServerSocket(8">
+<meta property="og:description" content="1.下载地址kafka下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置参数 配置参数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T16:00:00.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/17/Windows%20Install%20Kafka/1.JPG">
+<meta property="og:updated_time" content="2018-10-17T09:03:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Socket">
-<meta name="twitter:description" content="Server.java12345678910111213141516171819202122232425public class Server &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        ServerSocket serverSocket = new ServerSocket(8">
+<meta name="twitter:title" content="Windows Install Kafka">
+<meta name="twitter:description" content="1.下载地址kafka下载地址 2.解压安装使用解压工具对压缩包进行解压   3.配置参数 配置参数">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/17/Windows%20Install%20Kafka/1.JPG">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/06/Java Socket/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/17/Windows Install Kafka/"/>
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>Java Socket | BLOG</title>
+  <title>Windows Install Kafka | BLOG</title>
   
 
 
@@ -338,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/Java Socket/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/Windows Install Kafka/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
@@ -355,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java Socket
+          <h1 class="post-title" itemprop="name headline">Windows Install Kafka
               
             
           </h1>
@@ -380,7 +382,7 @@
                 
               
 
-              <time title="创建时间：2018-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-06T00:00:00+08:00">2018-09-06</time>
+              <time title="创建时间：2018-10-17 17:03:14" itemprop="dateCreated datePublished" datetime="2018-10-17T17:03:14+08:00">2018-10-17</time>
             
 
             
@@ -413,8 +415,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/06/Java Socket/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/06/Java Socket/" itemprop="commentCount"></span>
+                <a href="/2018/10/17/Windows Install Kafka/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/17/Windows Install Kafka/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -450,9 +452,19 @@
       
 
       
-        <p>Server.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Server &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        ServerSocket serverSocket = new ServerSocket(8081);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            Socket socket = serverSocket.accept();</span><br><span class="line">            new Thread(new Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));</span><br><span class="line">                        String str = &quot;&quot;;</span><br><span class="line">                        while ((str = bufferedReader.readLine()) != null) &#123;</span><br><span class="line">                            if (str.equals(&quot;1&quot;)) &#123;</span><br><span class="line">                                Thread.sleep(5 * 1000);</span><br><span class="line">                            &#125;</span><br><span class="line">                            System.out.println(str);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; catch (IOException | InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Client.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        Socket socket = new Socket(&quot;localhost&quot;, 8081);</span><br><span class="line">        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));</span><br><span class="line">        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in, &quot;UTF-8&quot;));</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            String str = bufferedReader.readLine();</span><br><span class="line">            bufferedWriter.write(str);</span><br><span class="line">            bufferedWriter.write(&quot;\n&quot;);</span><br><span class="line">            bufferedWriter.flush();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/socket" title="Java Socket源码地址​github.com" target="_blank" rel="noopener">Java Socket源码地址​github.com</a></strong></p>
+        <h5 id="1-下载地址"><a href="#1-下载地址" class="headerlink" title="1.下载地址"></a>1.下载地址</h5><p><strong><a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/2.0.0/kafka-2.0.0-src.tgz" title="kafka下载地址" target="_blank" rel="noopener">kafka下载地址</a></strong></p>
+<h5 id="2-解压安装"><a href="#2-解压安装" class="headerlink" title="2.解压安装"></a>2.解压安装</h5><p>使用解压工具对压缩包进行解压<br><img src="/2018/10/17/Windows%20Install%20Kafka/1.JPG">  </p>
+<h5 id="3-配置参数"><a href="#3-配置参数" class="headerlink" title="3.配置参数"></a>3.配置参数</h5><ul>
+<li>配置参数  </li>
+</ul>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">broker.id=0</span><br><span class="line">#listeners=PLAINTEXT://:9092</span><br><span class="line">#advertised.listeners=PLAINTEXT://your.host.name:9092</span><br><span class="line">num.network.threads=3</span><br><span class="line">num.io.threads=8</span><br><span class="line">socket.send.buffer.bytes=102400</span><br><span class="line">socket.receive.buffer.bytes=102400</span><br><span class="line">socket.request.max.bytes=104857600</span><br><span class="line"># log存放位置</span><br><span class="line">log.dirs=F:\\kafka_2.12-2.0.0\\logs</span><br><span class="line">num.partitions=1</span><br><span class="line">num.recovery.threads.per.data.dir=1</span><br><span class="line">offsets.topic.replication.factor=1</span><br><span class="line">transaction.state.log.replication.factor=1</span><br><span class="line">transaction.state.log.min.isr=1</span><br><span class="line">#log.flush.interval.messages=10000</span><br><span class="line">#log.flush.interval.ms=1000</span><br><span class="line">log.retention.hours=168</span><br><span class="line">#log.retention.bytes=1073741824</span><br><span class="line">log.segment.bytes=1073741824</span><br><span class="line">log.retention.check.interval.ms=300000</span><br><span class="line"># 连接zookeeper集群地址</span><br><span class="line">zookeeper.connect=localhost:2181,localhost:2182,localhost:2183</span><br><span class="line">zookeeper.connection.timeout.ms=6000</span><br><span class="line">group.initial.rebalance.delay.ms=0</span><br></pre></td></tr></table></figure>
+<h5 id="4-启动"><a href="#4-启动" class="headerlink" title="4.启动"></a>4.启动</h5><h6 id="启动Server"><a href="#启动Server" class="headerlink" title="启动Server:"></a>启动Server:</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\kafka-server-start.bat server.properties</span><br></pre></td></tr></table></figure>
+<h6 id="创建topic"><a href="#创建topic" class="headerlink" title="创建topic"></a>创建topic</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test3</span><br></pre></td></tr></table></figure>
+<h6 id="查看topic"><a href="#查看topic" class="headerlink" title="查看topic"></a>查看topic</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\bin\windows\kafka-topics.bat --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure>
+<h6 id="producer启动"><a href="#producer启动" class="headerlink" title="producer启动"></a>producer启动</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test</span><br></pre></td></tr></table></figure>
+<h6 id="consumer启动"><a href="#consumer启动" class="headerlink" title="consumer启动"></a>consumer启动</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\kafka_2.12-2.0.0\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test  --from-beginning</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/OomelodyoO/Learn/tree/master/kafka" title="kafka源码地址​github.com" target="_blank" rel="noopener">kafka源码地址​github.com</a></strong></p>
 
       
     </div>
@@ -473,9 +485,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
-            <a href="/tags/Socket/" rel="tag"># Socket</a>
+            <a href="/tags/Kafka/" rel="tag"># Kafka</a>
           
         </div>
       
@@ -488,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/06/RabbitMQ五种模式-WORK模式/" rel="next" title="RabbitMQ五种模式(WORK模式)">
-                <i class="fa fa-chevron-left"></i> RabbitMQ五种模式(WORK模式)
+              <a href="/2018/10/17/Windows Install ZooKeeper/" rel="next" title="Windows Install ZooKeeper">
+                <i class="fa fa-chevron-left"></i> Windows Install ZooKeeper
               </a>
             
           </div>
@@ -497,10 +507,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/07/RabbitMQ五种模式-P-S模式/" rel="prev" title="RabbitMQ五种模式(P/S模式)">
-                RabbitMQ五种模式(P/S模式) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -706,6 +721,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-下载地址"><span class="nav-number">1.</span> <span class="nav-text">1.下载地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-解压安装"><span class="nav-number">2.</span> <span class="nav-text">2.解压安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-配置参数"><span class="nav-number">3.</span> <span class="nav-text">3.配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-启动"><span class="nav-number">4.</span> <span class="nav-text">4.启动</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#启动Server"><span class="nav-number">4.1.</span> <span class="nav-text">启动Server:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#创建topic"><span class="nav-number">4.2.</span> <span class="nav-text">创建topic</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查看topic"><span class="nav-number">4.3.</span> <span class="nav-text">查看topic</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#producer启动"><span class="nav-number">4.4.</span> <span class="nav-text">producer启动</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#consumer启动"><span class="nav-number">4.5.</span> <span class="nav-text">consumer启动</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
