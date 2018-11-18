@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[异步同步阻塞非阻塞]]></title>
+    <url>%2F2018%2F11%2F18%2F%E5%BC%82%E6%AD%A5%E5%90%8C%E6%AD%A5%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E%2F</url>
+    <content type="text"><![CDATA[事件：打电话订外卖，拨通老板电话，询问菜品，选菜。同步：老板说：”我看一下厨房，还有没菜，还能不能做！”，然后就去问了，等确认后告诉你结果。（可能一分钟，也可能好久好久）异步：老板说：”我去查一下，查好了电话告诉你！”，然后就挂电话了。（不返回结果）等确认后，给你打电话。 阻塞：你等待，不去做任何事情，一直等待结果。非阻塞：你不等待，先去做别的事情，偶尔检查一下老板有没有老板的消息。]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>异步、同步、阻塞、非阻塞</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git常用命令]]></title>
     <url>%2F2018%2F11%2F17%2FGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[一、初始化仓库1234# 新建一个目录，将其初始化为Git代码库git init [project-name]# 下载一个项目和它的整个代码历史git clone [url] 二、工作区–&gt;暂存区123456# 添加指定文件到暂存区git add [file1] [file2] ...# 添加当前目录的所有文件到暂存区git add .# 从暂存区删除到工作区git rm --cached &lt;file&gt;... 三、暂存区–&gt;仓库区1git commit -m &quot;message...&quot; 四、分支12345678910# 列出所有本地分支和远程分支git branch -a# 新建一个分支，但依然停留在当前分支git branch [branch-name]# 新建一个分支，并切换到该分支git checkout -b [branch]# 切换到指定分支，并更新工作区git checkout [branch-name]# 删除分支git branch -d [branch-name] 五、远程同步1234567# remote为url地址，或者本地起到别名 branch为本地分支名# 为远程地址起名git remote add [&lt;options&gt;] &lt;name&gt; &lt;url&gt;# 取回远程仓库的变化，并与本地分支合并git pull [remote] [branch]# 上传本地指定分支到远程仓库git push [remote] [branch] 六、查看信息1234# 显示有变更的文件git status# 显示当前分支的版本历史git log]]></content>
+    <content type="text"><![CDATA[一、初始化仓库1234# 新建一个目录，将其初始化为Git代码库git init [project-name]# 下载一个项目和它的整个代码历史git clone [url] 二、工作区–&gt;暂存区123456# 添加指定文件到暂存区git add [file1] [file2] ...# 添加当前目录的所有文件到暂存区git add .# 从暂存区删除到工作区git rm --cached &lt;file&gt;... 三、暂存区–&gt;仓库区1git commit -m &quot;message...&quot; 四、分支12345678910# 列出所有本地分支和远程分支git branch -a# 新建一个分支，但依然停留在当前分支git branch [branch-name]# 新建一个分支，并切换到该分支git checkout -b [branch]# 切换到指定分支，并更新工作区git checkout [branch-name]# 删除分支git branch -d [branch-name] 五、远程同步123456789# remote为url地址，或者本地起到别名 branch为本地分支名# 为远程地址起名git remote add [&lt;options&gt;] &lt;name&gt; &lt;url&gt;# 取回远程仓库的变化，并与本地分支合并git pull [remote] [branch]# 上传本地指定分支到远程仓库git push [remote] [branch]# 列出所有远程别名git remote -v 六、查看信息1234# 显示有变更的文件git status# 显示当前分支的版本历史git log]]></content>
       <categories>
         <category>计算机</category>
       </categories>
@@ -129,6 +140,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
+    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java Socket]]></title>
     <url>%2F2018%2F09%2F06%2FJava%20Socket%2F</url>
     <content type="text"><![CDATA[Server.java12345678910111213141516171819202122232425public class Server &#123; public static void main(String[] args) throws IOException &#123; ServerSocket serverSocket = new ServerSocket(8081); while (true) &#123; Socket socket = serverSocket.accept(); new Thread(new Runnable() &#123; @Override public void run() &#123; try &#123; BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String str = &quot;&quot;; while ((str = bufferedReader.readLine()) != null) &#123; if (str.equals(&quot;1&quot;)) &#123; Thread.sleep(5 * 1000); &#125; System.out.println(str); &#125; &#125; catch (IOException | InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; &#125;).start(); &#125; &#125;&#125; Client.java12345678910111213public class Client &#123; public static void main(String[] args) throws IOException &#123; Socket socket = new Socket(&quot;localhost&quot;, 8081); BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in, &quot;UTF-8&quot;)); while (true) &#123; String str = bufferedReader.readLine(); bufferedWriter.write(str); bufferedWriter.write(&quot;\n&quot;); bufferedWriter.flush(); &#125; &#125;&#125; Java Socket源码地址​github.com]]></content>
@@ -138,17 +160,6 @@
       <tags>
         <tag>Java</tag>
         <tag>Socket</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
-    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -245,18 +256,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install Redis]]></title>
-    <url>%2F2018%2F02%2F08%2FCentOS%20Install%20Redis%2F</url>
-    <content type="text"><![CDATA[已安装GCCREDIS下载地址12345678wget http://download.redis.io/releases/redis-3.2.3.tar.gztar xzf redis-3.2.3.tar.gzcd redis-3.2.3&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;make MALLOC=libcfirewall-cmd --zone=public --add-port=6379/tcp --permanent systemctl stop firewalld systemctl start firewalld redis.conf 末尾增加bing 0.0.0.012redis-serverredis-cli -h xxx.xxx.xxx.xxx]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python Pip Requirements]]></title>
     <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
     <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
@@ -269,14 +268,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Mysql Data Backup]]></title>
-    <url>%2F2018%2F02%2F07%2FMysql%20Data%20Backup%2F</url>
-    <content type="text"><![CDATA[1.Create sh script file1touch backup.sh 2.Copy this code and paste it into backup.sh script file123456789#bin/shMYSQLDUMP=YOUR_MYSQLDUMP_PATHMYSQL_USERNAME=YOUR_MYSQL_USERNAMEMYSQL_PASSWORD=YOUR_MYSQL_PASSWORDMYSQL_HOST=YOUR_MYSQL_HOSTMYSQL_PORT=YOUR_MYSQL_PORTMYSQL_DB=YOUR_MYSQL_DBSQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125; 3.Modify file permissions1chmod 755 ./backup.sh 4. Execute sh script file1./backup.sh]]></content>
+    <title><![CDATA[CentOS Install Redis]]></title>
+    <url>%2F2018%2F02%2F08%2FCentOS%20Install%20Redis%2F</url>
+    <content type="text"><![CDATA[已安装GCCREDIS下载地址12345678wget http://download.redis.io/releases/redis-3.2.3.tar.gztar xzf redis-3.2.3.tar.gzcd redis-3.2.3&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;make MALLOC=libcfirewall-cmd --zone=public --add-port=6379/tcp --permanent systemctl stop firewalld systemctl start firewalld redis.conf 末尾增加bing 0.0.0.012redis-serverredis-cli -h xxx.xxx.xxx.xxx]]></content>
       <categories>
         <category>计算机</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
+        <tag>CentOS</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -289,6 +289,17 @@
       <tags>
         <tag>CentOS</tag>
         <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql Data Backup]]></title>
+    <url>%2F2018%2F02%2F07%2FMysql%20Data%20Backup%2F</url>
+    <content type="text"><![CDATA[1.Create sh script file1touch backup.sh 2.Copy this code and paste it into backup.sh script file123456789#bin/shMYSQLDUMP=YOUR_MYSQLDUMP_PATHMYSQL_USERNAME=YOUR_MYSQL_USERNAMEMYSQL_PASSWORD=YOUR_MYSQL_PASSWORDMYSQL_HOST=YOUR_MYSQL_HOSTMYSQL_PORT=YOUR_MYSQL_PORTMYSQL_DB=YOUR_MYSQL_DBSQL_NAME=$&#123;MYSQL_DB&#125;&quot;_&quot;&quot;`date &quot;+%Y%m%d%H%M%S&quot;`&quot;&quot;.sql&quot;$&#123;MYSQLDUMP&#125; -u$&#123;MYSQL_USERNAME&#125; -h$&#123;MYSQL_HOST&#125; -P$&#123;MYSQL_PORT&#125; -p$&#123;MYSQL_PASSWORD&#125; $&#123;MYSQL_DB&#125; &gt; ./$&#123;SQL_NAME&#125; 3.Modify file permissions1chmod 755 ./backup.sh 4. Execute sh script file1./backup.sh]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
       </tags>
   </entry>
 </search>

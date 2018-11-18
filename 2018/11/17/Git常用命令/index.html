@@ -455,7 +455,7 @@
 <a id="more"></a>
 <h6 id="三、暂存区–-gt-仓库区"><a href="#三、暂存区–-gt-仓库区" class="headerlink" title="三、暂存区–&gt;仓库区"></a>三、暂存区–&gt;仓库区</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;message...&quot;</span><br></pre></td></tr></table></figure>
 <h5 id="四、分支"><a href="#四、分支" class="headerlink" title="四、分支"></a>四、分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 列出所有本地分支和远程分支</span><br><span class="line">git branch -a</span><br><span class="line"># 新建一个分支，但依然停留在当前分支</span><br><span class="line">git branch [branch-name]</span><br><span class="line"># 新建一个分支，并切换到该分支</span><br><span class="line">git checkout -b [branch]</span><br><span class="line"># 切换到指定分支，并更新工作区</span><br><span class="line">git checkout [branch-name]</span><br><span class="line"># 删除分支</span><br><span class="line">git branch -d [branch-name]</span><br></pre></td></tr></table></figure>
-<h5 id="五、远程同步"><a href="#五、远程同步" class="headerlink" title="五、远程同步"></a>五、远程同步</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># remote为url地址，或者本地起到别名 branch为本地分支名</span><br><span class="line"># 为远程地址起名</span><br><span class="line">git remote add [&lt;options&gt;] &lt;name&gt; &lt;url&gt;</span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">git pull [remote] [branch]</span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">git push [remote] [branch]</span><br></pre></td></tr></table></figure>
+<h5 id="五、远程同步"><a href="#五、远程同步" class="headerlink" title="五、远程同步"></a>五、远程同步</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># remote为url地址，或者本地起到别名 branch为本地分支名</span><br><span class="line"># 为远程地址起名</span><br><span class="line">git remote add [&lt;options&gt;] &lt;name&gt; &lt;url&gt;</span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">git pull [remote] [branch]</span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">git push [remote] [branch]</span><br><span class="line"># 列出所有远程别名</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 <h5 id="六、查看信息"><a href="#六、查看信息" class="headerlink" title="六、查看信息"></a>六、查看信息</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 显示有变更的文件</span><br><span class="line">git status</span><br><span class="line"># 显示当前分支的版本历史</span><br><span class="line">git log</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -498,6 +498,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/18/异步同步阻塞非阻塞/" rel="prev" title="异步同步阻塞非阻塞">
+                异步同步阻塞非阻塞 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -574,7 +578,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -658,7 +662,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">27</span>
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
