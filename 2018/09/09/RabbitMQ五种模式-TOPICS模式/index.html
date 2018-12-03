@@ -116,12 +116,12 @@
 <meta property="og:site_name" content="Simple">
 <meta property="og:description" content="Send.java 123456789101112131415161718public class Send &amp;#123;    public static String EXCHANGE_NAME = &amp;quot;test_exchange_topic&amp;quot;;    public static void main(String[] args) throws IOException, Ti">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/09/09/RabbitMQ五种模式-TOPICS模式/topics.jpg">
+<meta property="og:image" content="http://yoursite.com/images/post/topics.jpg">
 <meta property="og:updated_time" content="2018-09-08T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RabbitMQ五种模式(TOPICS模式)">
 <meta name="twitter:description" content="Send.java 123456789101112131415161718public class Send &amp;#123;    public static String EXCHANGE_NAME = &amp;quot;test_exchange_topic&amp;quot;;    public static void main(String[] args) throws IOException, Ti">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/09/RabbitMQ五种模式-TOPICS模式/topics.jpg">
+<meta name="twitter:image" content="http://yoursite.com/images/post/topics.jpg">
 
 
 
@@ -487,7 +487,7 @@
       
 
       
-        <img src="/2018/09/09/RabbitMQ五种模式-TOPICS模式/topics.jpg">
+        <p><img src="/images/post/topics.jpg" alt=""></p>
 <p>Send.java</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Send &#123;</span><br><span class="line">    public static String EXCHANGE_NAME = &quot;test_exchange_topic&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, TimeoutException &#123;</span><br><span class="line">        ConnectionFactory factory = new ConnectionFactory();</span><br><span class="line">        factory.setHost(&quot;localhost&quot;);</span><br><span class="line">        factory.setVirtualHost(&quot;/zhang&quot;);</span><br><span class="line">        factory.setUsername(&quot;zhang&quot;);</span><br><span class="line">        factory.setPassword(&quot;zhang&quot;);</span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line">        channel.exchangeDeclare(EXCHANGE_NAME, &quot;topic&quot;);</span><br><span class="line">        String message = &quot;message&quot;;</span><br><span class="line">        channel.basicPublish(EXCHANGE_NAME, &quot;item.broadcast&quot;, null, message.getBytes());</span><br><span class="line">        channel.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
