@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[大数定律]]></title>
+    <url>%2F2018%2F12%2F11%2F%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B%2F</url>
+    <content type="text"><![CDATA[定义在数学与统计学中，大数定律又称大数法则、大数律，是描述相当多次数重复实验的结果的定律。根据这个定律知道，样本数量越多，则其算术平均值就越趋近期望值。 举例1)抛掷一颗均匀的6面的骰子，六面出现概率为 数据 1 2 3 4 5 6 概率 1/6 1/6 1/6 1/6 1/6 1/6 数学期望 = 1 × (1/6) + 2 × (1/6) + 3 × (1/6) + 4 × (1/6) + 5 × (1/6) + 6 × (1/6) 数学期望 = 3.5 2)使用程序模拟投掷过程1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950public class Application &#123; public static void main(String[] args) &#123; int count = 100 * 10000; int oneCount = 0; int twoCount = 0; int threeCount = 0; int fourCount = 0; int fiveCount = 0; int sixCount = 0; for (int i = 1; i &lt;= count; i++) &#123; int ran = (int) (Math.random() * 6) + 1; switch (ran) &#123; case 1: oneCount = oneCount + 1; break; case 2: twoCount = twoCount + 1; break; case 3: threeCount = threeCount + 1; break; case 4: fourCount = fourCount + 1; break; case 5: fiveCount = fiveCount + 1; break; case 6: sixCount = sixCount + 1; break; &#125; if (i == 100 || i == 10000 || i == 1000000) &#123; System.out.println(&quot;第&quot; + i + &quot;次统计：&quot;); System.out.println(&quot;1\t2\t3\t4\t5\t6&quot;); System.out.print(oneCount + &quot;\t&quot;); System.out.print(twoCount + &quot;\t&quot;); System.out.print(threeCount + &quot;\t&quot;); System.out.print(fourCount + &quot;\t&quot;); System.out.print(fiveCount + &quot;\t&quot;); System.out.println(sixCount); System.out.print(new BigDecimal(oneCount).divide(new BigDecimal(i)) + &quot;\t&quot;); System.out.print(new BigDecimal(twoCount).divide(new BigDecimal(i)) + &quot;\t&quot;); System.out.print(new BigDecimal(threeCount).divide(new BigDecimal(i)) + &quot;\t&quot;); System.out.print(new BigDecimal(fourCount).divide(new BigDecimal(i)) + &quot;\t&quot;); System.out.print(new BigDecimal(fiveCount).divide(new BigDecimal(i)) + &quot;\t&quot;); System.out.println(new BigDecimal(sixCount).divide(new BigDecimal(i))); &#125; &#125; &#125;&#125; 3)统计结果第100次统计： 数据 1 2 3 4 5 6 出现次数 17 15 16 19 21 12 出现概率 0.17 0.15 0.16 0.19 0.21 0.12 总数为：348 算术平均数为：3.48 第10000次统计： 数据 1 2 3 4 5 6 出现次数 1724 1638 1639 1636 1664 1699 出现概率 0.1724 0.1638 0.1639 0.1636 0.1664 0.1699 总数为：34975 算术平均数为：3.4975 第1000000次统计： 数据 1 2 3 4 5 6 出现次数 167149 166751 166553 166521 166688 166338 出现概率 0.167149 0.166751 0.166553 0.166521 0.166688 0.166338 总数为：3497862 算术平均数为：3.497862 结论随着投掷次数的不断增多，算术平均数无限接近于期望值]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>定律</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 8]]></title>
     <url>%2F2018%2F12%2F04%2FJava%208%2F</url>
     <content type="text"><![CDATA[1.背景按照 Java 的发布计划，Java 12 将于2019年 3 月推出，本人现在还在使用Java 8，这本身没有什么问题，但“惭愧”的是目前不会使用8的新特性。 “这段代码中，使用了Java 8 的LAMBDA表达式”。 “一会让你见识见识Java 8 的STREAM有多好用”。 每当听到或看到，类似以上内容的话语或文字的时候，发出感慨者那种优于其它人的自豪感，让我更加的“惭愧”。 2.代码LAMBDA1234567891011121314151617181920212223public class test &#123; public static void main(String[] args) &#123; // 不用LAMBDA MathOperation mathOperation = new MathOperation() &#123; @Override public int operation(int a, int b) &#123; return a + b; &#125; &#125;; System.out.println(new test().operate(100, 50, mathOperation)); // 用LAMBDA System.out.println(new test().operate(100, 50, (a, b) -&gt; a + b)); &#125; interface MathOperation &#123; int operation(int a, int b); &#125; private int operate(int a, int b, MathOperation mathOperation) &#123; return mathOperation.operation(a, b); &#125;&#125; STREAM Set;List;Map;SortedSet;SortedMap;HashSet;TreeSet;ArrayList;LinkedList;Vector;Collections;Arrays;AbstractCollection以上这些类都有stream()方法，这就是传说中的STREAM。 filter 方法用于通过设置的条件过滤出元素。 sorted 方法用于对流进行排序。 map 方法用于映射每个元素到对应的结果。 123456789101112131415public class test &#123; public static void main(String[] args) &#123; List&lt;String&gt; rStrings; List&lt;String&gt; strings = Arrays.asList("a", "ab", "ac", "d", "e", "f", "ag"); System.out.println("stream filter:"); rStrings = strings.stream().filter(string -&gt; string.contains("a")).collect(Collectors.toList()); System.out.println(rStrings.toString()); System.out.println("stream sorted:"); rStrings = strings.stream().sorted().collect(Collectors.toList()); System.out.println(rStrings.toString()); System.out.println("stream map:"); rStrings = strings.stream().map(string -&gt; string + string).collect(Collectors.toList()); System.out.println(rStrings.toString()); &#125;&#125; Console123456stream filter:[a, ab, ac, ag]stream sorted:[a, ab, ac, ag, d, e, f]stream map:[aa, abab, acac, dd, ee, ff, agag] 3.总结代码变简洁了，可读性和调试变得不方便了。 4.名人名言有的人滥用形容词语和形容句子，以为堆砌得越多越漂亮；有的人不肯顺着一般人的表达习惯来写，以为不说些离奇别扭的话就不成其为文章；有的人搬弄一些俗滥的成语或者典故，以为不这样做不足以显示自己的高明。—叶圣陶 有真意，去粉饰，少做作，勿卖弄。—鲁迅]]></content>
@@ -246,18 +258,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install Mysql]]></title>
-    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[CentOS Install ShadowSocks]]></title>
     <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
@@ -270,15 +270,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python Pip Requirements]]></title>
-    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
-    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
+    <title><![CDATA[CentOS Install Mysql]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
       <categories>
         <category>计算机</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>Pip</tag>
+        <tag>CentOS</tag>
+        <tag>Mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -291,6 +291,18 @@
       <tags>
         <tag>CentOS</tag>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python Pip Requirements]]></title>
+    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
+    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pip</tag>
       </tags>
   </entry>
   <entry>

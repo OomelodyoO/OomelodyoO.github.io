@@ -379,6 +379,308 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/11/大数定律/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/11/大数定律/" class="post-title-link" itemprop="http://yoursite.com/index.html">大数定律</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-11 14:40:00" itemprop="dateCreated datePublished" datetime="2018-12-11T14:40:00+08:00">2018-12-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/11/大数定律/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/11/大数定律/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在数学与统计学中，大数定律又称大数法则、大数律，是描述相当多次数重复实验的结果的定律。根据这个定律知道，样本数量越多，则其算术平均值就越趋近期望值。</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><h3 id="1-抛掷一颗均匀的6面的骰子，六面出现概率为"><a href="#1-抛掷一颗均匀的6面的骰子，六面出现概率为" class="headerlink" title="1)抛掷一颗均匀的6面的骰子，六面出现概率为"></a>1)抛掷一颗均匀的6面的骰子，六面出现概率为</h3><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>概率</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+</tr>
+</tbody>
+</table>
+<p>数学期望 = 1 × (1/6) + 2 × (1/6) + 3 × (1/6) + 4 × (1/6) + 5 × (1/6) + 6 × (1/6)</p>
+<p>数学期望 = 3.5</p>
+<h3 id="2-使用程序模拟投掷过程"><a href="#2-使用程序模拟投掷过程" class="headerlink" title="2)使用程序模拟投掷过程"></a>2)使用程序模拟投掷过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">public class Application &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int count = 100 * 10000;</span><br><span class="line">        int oneCount = 0;</span><br><span class="line">        int twoCount = 0;</span><br><span class="line">        int threeCount = 0;</span><br><span class="line">        int fourCount = 0;</span><br><span class="line">        int fiveCount = 0;</span><br><span class="line">        int sixCount = 0;</span><br><span class="line">        for (int i = 1; i &lt;= count; i++) &#123;</span><br><span class="line">            int ran = (int) (Math.random() * 6) + 1;</span><br><span class="line">            switch (ran) &#123;</span><br><span class="line">                case 1:</span><br><span class="line">                    oneCount = oneCount + 1;</span><br><span class="line">                    break;</span><br><span class="line">                case 2:</span><br><span class="line">                    twoCount = twoCount + 1;</span><br><span class="line">                    break;</span><br><span class="line">                case 3:</span><br><span class="line">                    threeCount = threeCount + 1;</span><br><span class="line">                    break;</span><br><span class="line">                case 4:</span><br><span class="line">                    fourCount = fourCount + 1;</span><br><span class="line">                    break;</span><br><span class="line">                case 5:</span><br><span class="line">                    fiveCount = fiveCount + 1;</span><br><span class="line">                    break;</span><br><span class="line">                case 6:</span><br><span class="line">                    sixCount = sixCount + 1;</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            if (i == 100 || i == 10000 || i == 1000000) &#123;</span><br><span class="line">                System.out.println(&quot;第&quot; + i + &quot;次统计：&quot;);</span><br><span class="line">                System.out.println(&quot;1\t2\t3\t4\t5\t6&quot;);</span><br><span class="line">                System.out.print(oneCount + &quot;\t&quot;);</span><br><span class="line">                System.out.print(twoCount + &quot;\t&quot;);</span><br><span class="line">                System.out.print(threeCount + &quot;\t&quot;);</span><br><span class="line">                System.out.print(fourCount + &quot;\t&quot;);</span><br><span class="line">                System.out.print(fiveCount + &quot;\t&quot;);</span><br><span class="line">                System.out.println(sixCount);</span><br><span class="line">                System.out.print(new BigDecimal(oneCount).divide(new BigDecimal(i)) + &quot;\t&quot;);</span><br><span class="line">                System.out.print(new BigDecimal(twoCount).divide(new BigDecimal(i)) + &quot;\t&quot;);</span><br><span class="line">                System.out.print(new BigDecimal(threeCount).divide(new BigDecimal(i)) + &quot;\t&quot;);</span><br><span class="line">                System.out.print(new BigDecimal(fourCount).divide(new BigDecimal(i)) + &quot;\t&quot;);</span><br><span class="line">                System.out.print(new BigDecimal(fiveCount).divide(new BigDecimal(i)) + &quot;\t&quot;);</span><br><span class="line">                System.out.println(new BigDecimal(sixCount).divide(new BigDecimal(i)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-统计结果"><a href="#3-统计结果" class="headerlink" title="3)统计结果"></a>3)统计结果</h3><p>第100次统计：</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出现次数</td>
+<td>17</td>
+<td>15</td>
+<td>16</td>
+<td>19</td>
+<td>21</td>
+<td>12</td>
+</tr>
+<tr>
+<td>出现概率</td>
+<td>0.17</td>
+<td>0.15</td>
+<td>0.16</td>
+<td>0.19</td>
+<td>0.21</td>
+<td>0.12</td>
+</tr>
+</tbody>
+</table>
+<p>总数为：348</p>
+<p>算术平均数为：3.48</p>
+<p>第10000次统计：</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出现次数</td>
+<td>1724</td>
+<td>1638</td>
+<td>1639</td>
+<td>1636</td>
+<td>1664</td>
+<td>1699</td>
+</tr>
+<tr>
+<td>出现概率</td>
+<td>0.1724</td>
+<td>0.1638</td>
+<td>0.1639</td>
+<td>0.1636</td>
+<td>0.1664</td>
+<td>0.1699</td>
+</tr>
+</tbody>
+</table>
+<p>总数为：34975</p>
+<p>算术平均数为：3.4975</p>
+<p>第1000000次统计：</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出现次数</td>
+<td>167149</td>
+<td>166751</td>
+<td>166553</td>
+<td>166521</td>
+<td>166688</td>
+<td>166338</td>
+</tr>
+<tr>
+<td>出现概率</td>
+<td>0.167149</td>
+<td>0.166751</td>
+<td>0.166553</td>
+<td>0.166521</td>
+<td>0.166688</td>
+<td>0.166338</td>
+</tr>
+</tbody>
+</table>
+<p>总数为：3497862</p>
+<p>算术平均数为：3.497862</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>随着投掷次数的不断增多，算术平均数无限接近于期望值</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Java 8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1931,179 +2233,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/（一）JAVA NIO BUFFER/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/09/10/（一）JAVA NIO BUFFER/" class="post-title-link" itemprop="http://yoursite.com/index.html">（一）JAVA NIO BUFFER</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-10 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-10T00:00:00+08:00">2018-09-10</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/10/（一）JAVA NIO BUFFER/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/10/（一）JAVA NIO BUFFER/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h6 id="1-变量："><a href="#1-变量：" class="headerlink" title="1.变量："></a>1.变量：</h6><p>capacity： 指定了可以存储在缓冲区中的最大数据容量，实际上，它指定了底层数组的大小，或者至少是指定了准许我们使用的底层数组的容量。<br>position： 下一次读取或写入的位置。（每次调用get put方法+1）<br>limit：指定还有多少数据需要取出，或者还有多少空间可以放入数据。（每次调用get put方法时候，通过position与limit对比）</p>
-<h6 id="2-方法："><a href="#2-方法：" class="headerlink" title="2.方法："></a>2.方法：</h6><p>get：position + 1<br>put：position + 1<br>flip：limit = position position = 0 mark = -1<br>clear：limit = capacity position = 0 mark = -1<br>mark： mark = position<br>reset：position = m;<br>duplicate：浅拷贝（每个缓存区的上界、容量、位置等属性是各自独立的）<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/09/10/（一）JAVA NIO BUFFER/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2153,7 +2282,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2247,7 +2376,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">32</span>
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
