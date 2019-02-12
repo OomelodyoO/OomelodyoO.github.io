@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[1. How to Include Spring Cloud Gateway]]></title>
-    <url>%2F2019%2F02%2F12%2Fspring-cloud-gateway%2F1.%20How%20to%20Include%20Spring%20Cloud%20Gateway%2F</url>
+    <title><![CDATA[3.How It Works]]></title>
+    <url>%2F2019%2F02%2F12%2Fspring-cloud-gateway%2F3.How%20It%20Works%2F</url>
+    <content type="text"><![CDATA[Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a Route, it is sent to the Gateway Web Handler. This handler runs sends the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line, is that filters may execute logic before the proxy request is sent or after. All “pre” filter logic is executed, then the proxy request is made. After the proxy request is made, the “post” filter logic is executed. 客户端向Spring Cloud Gateway发出请求。如果网关处理Mapping确定请求与路由匹配，则将其发送到网关Web处理程序。此处理器通过特定的请求filter链发送请求。filters被分开的原因是，filters可以在代理请求发送之前或之后执行逻辑。所有的”pre”fliter逻辑，然后进行代理请求，代理请求发送之后，执行”post”fliter逻辑。 URIs defined in routes without a port will get a default port set to 80 and 443 for HTTP and HTTPS URIs respectively. 在没有端口的路由中定义的URI将分别设置为HTTP的80和HTTPS的443为默认端口。]]></content>
+      <categories>
+        <category>文档翻译</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Gateway</tag>
+        <tag>Spring-cloud-gateway</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2.Glossary]]></title>
+    <url>%2F2019%2F02%2F12%2Fspring-cloud-gateway%2F2.Glossary%2F</url>
+    <content type="text"><![CDATA[2.Glossary 2. 词汇表 Route: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true. 路由：路由是网管基本构建块。它由ID，目标URI，predicates集合，filters集合组成。如果predicate的并集为真则路由匹配成功。 Predicate: This is a Java 8 Function Predicate. The input type is a Spring Framework ServerWebExchange. This allows developers to match on anything from the HTTP request, such as headers or parameters. 断言：这是一个Java8的断言方法。这个输入的参数类型是一个Spring Framework的ServerWebExchange类型。它允许开发者匹配来自HTTP请求的一切内容，例如headers或者parameters。 Filter: These are instances Spring Framework GatewayFilter constructed in with a specific factory. Here, requests and responses can be modified before or after sending the downstream request. 过滤器：这些是使用特定工厂构建的Spring Framework GatewayFilter实例。这里，可以在发送下游请求之前或之后修改requests和responses。]]></content>
+      <categories>
+        <category>文档翻译</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Gateway</tag>
+        <tag>Spring-cloud-gateway</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1.How to Include Spring Cloud Gateway]]></title>
+    <url>%2F2019%2F02%2F12%2Fspring-cloud-gateway%2F1.How%20to%20Include%20Spring%20Cloud%20Gateway%2F</url>
     <content type="text"><![CDATA[1.How to Include Spring Cloud Gateway 1.如何导入Spring Cloud Gateway To include Spring Cloud Gateway in your project use the starter with group org.springframework.cloud and artifact id spring-cloud-starter-gateway. See the Spring Cloud Project page for details on setting up your build system with the current Spring Cloud Release Train. 要在项目中导入Spring Cloud Gateway，请使用 group org.springframework.cloud 和 artifact id spring-cloud-starter-gateway。有关使用当前Spring Cloud Release 培训设置构建系统的详细信息，请参阅Spring Cloud Project页面。 If you include the starter, but, for some reason, you do not want the gateway to be enabled, set spring.cloud.gateway.enabled=false. 如果你导入这个starter，但是因为某种原因，你不希望启用gateway，请设置spring.cloud.gateway.enabled=false. Important 重要 Spring Cloud Gateway requires the Netty runtime provided by Spring Boot and Spring Webflux. It does not work in a traditional Servlet Container or built as a WAR. Netty需要为Spring Cloud Gateway的Spring Boot和Spring Webflux提供运行环境。它不能在传统的Servlet容器中工作或构建为WAR。]]></content>
       <categories>
         <category>文档翻译</category>
@@ -16,7 +42,7 @@
   <entry>
     <title><![CDATA[spring-cloud-gateway文档翻译]]></title>
     <url>%2F2019%2F02%2F12%2Fspring-cloud-gateway%2Fspring-cloud-gateway%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%2F</url>
-    <content type="text"><![CDATA[此译文版本为 spring-cloud-gateway 2.1.0.RELEASE1. How to Include Spring Cloud Gateway2. Glossary3. How It Works4. Route Predicate Factories5. GatewayFilter Factories6. Global Filters7. TLS / SSL8. Configuration9. Reactor Netty Access Logs10. CORS Configuration11. Actuator API12. Developer Guide13. Building a Simple Gateway Using Spring MVC or Webflux]]></content>
+    <content type="text"><![CDATA[此译文版本为 spring-cloud-gateway 2.1.0.RELEASE1.How to Include Spring Cloud Gateway2.Glossary3.How It Works4.Route Predicate Factories5.GatewayFilter Factories6.Global Filters7.TLS / SSL8.Configuration9.Reactor Netty Access Logs10.CORS Configuration11.Actuator API12.Developer Guide13.Building a Simple Gateway Using Spring MVC or Webflux]]></content>
       <categories>
         <category>文档翻译</category>
       </categories>
@@ -251,17 +277,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
-    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Java Socket]]></title>
     <url>%2F2018%2F09%2F06%2FJava%20Socket%2F</url>
     <content type="text"><![CDATA[Server.java12345678910111213141516171819202122232425public class Server &#123; public static void main(String[] args) throws IOException &#123; ServerSocket serverSocket = new ServerSocket(8081); while (true) &#123; Socket socket = serverSocket.accept(); new Thread(new Runnable() &#123; @Override public void run() &#123; try &#123; BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String str = &quot;&quot;; while ((str = bufferedReader.readLine()) != null) &#123; if (str.equals(&quot;1&quot;)) &#123; Thread.sleep(5 * 1000); &#125; System.out.println(str); &#125; &#125; catch (IOException | InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; &#125;).start(); &#125; &#125;&#125; Client.java12345678910111213public class Client &#123; public static void main(String[] args) throws IOException &#123; Socket socket = new Socket(&quot;localhost&quot;, 8081); BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in, &quot;UTF-8&quot;)); while (true) &#123; String str = bufferedReader.readLine(); bufferedWriter.write(str); bufferedWriter.write(&quot;\n&quot;); bufferedWriter.flush(); &#125; &#125;&#125; Java Socket源码地址​github.com]]></content>
@@ -271,6 +286,17 @@
       <tags>
         <tag>Java</tag>
         <tag>Socket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
+    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -343,18 +369,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install Mysql]]></title>
-    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[CentOS Install ShadowSocks]]></title>
     <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
@@ -364,6 +378,18 @@
       <tags>
         <tag>CentOS</tag>
         <tag>ShadowSocks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Mysql]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Mysql</tag>
       </tags>
   </entry>
   <entry>
