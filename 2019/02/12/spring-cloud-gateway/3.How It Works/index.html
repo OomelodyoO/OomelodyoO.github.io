@@ -497,11 +497,11 @@
 <a id="more"></a>
 <blockquote>
 <p>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a Route, it is sent to the Gateway Web Handler. This handler runs sends the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line, is that filters may execute logic before the proxy request is sent or after. All “pre” filter logic is executed, then the proxy request is made. After the proxy request is made, the “post” filter logic is executed.</p>
-<p>客户端向Spring Cloud Gateway发出请求。如果网关处理Mapping确定请求与路由匹配，则将其发送到网关Web处理程序。此处理器通过特定的请求filter链发送请求。filters被分开的原因是，filters可以在代理请求发送之前或之后执行逻辑。所有的”pre”fliter逻辑，然后进行代理请求，代理请求发送之后，执行”post”fliter逻辑。</p>
+<p><span style="font-weight:bolder;">客户端向Spring Cloud Gateway发出请求。如果网关处理Mapping确定请求与路由匹配，则将其发送到网关Web处理程序。此处理器通过特定的请求filter链发送请求。filters被分开的原因是，filters可以在代理请求发送之前或之后执行逻辑。所有的”pre”fliter逻辑，然后进行代理请求，代理请求发送之后，执行”post”fliter逻辑。</span></p>
 </blockquote>
 <blockquote>
 <p>URIs defined in routes without a port will get a default port set to 80 and 443 for HTTP and HTTPS URIs respectively.</p>
-<p>在没有端口的路由中定义的URI将分别设置为HTTP的80和HTTPS的443为默认端口。</p>
+<p><span style="font-weight:bolder;">在没有端口的路由中定义的URI将分别设置为HTTP的80和HTTPS的443为默认端口。</span></p>
 </blockquote>
 
       
@@ -552,6 +552,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/13/spring-cloud-gateway/4.Route Predicate Factories/" rel="prev" title="4.Route Predicate Factories">
+                4.Route Predicate Factories <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -617,7 +621,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

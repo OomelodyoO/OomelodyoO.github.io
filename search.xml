@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[4.Route Predicate Factories]]></title>
+    <url>%2F2019%2F02%2F13%2Fspring-cloud-gateway%2F4.Route%20Predicate%20Factories%2F</url>
+    <content type="text"><![CDATA[4.Route Predicate Factories 4.路由断言工厂 Spring Cloud Gateway matches routes as part of the Spring WebFlux HandlerMapping infrastructure. Spring Cloud Gateway includes many built-in Route Predicate Factories. All of these predicates match on different attributes of the HTTP request. Multiple Route Predicate Factories can be combined and are combined via logical and. Spring Cloud Gateway将路由作为Spring WebFlux HandlerMapping基础结构的一部分进行匹配。Spring Cloud Gateway包含许多内置的路由断言工厂。所有这些断言都匹配HTTP请求的不同属性。多路由断言工厂可以组合并通过逻辑”and”组合。 4.1 After Route Predicate Factory 4.1 After Route断言工厂 The After Route Predicate Factory takes one parameter, a datetime. This predicate matches requests that happen after the current datetime. After Route断言工厂需要一个参数，datetime。这个断言匹配在当前日期时间之后发生的请求。 application.yml. 12345678spring: cloud: gateway: routes: - id: after_route uri: http://example.org predicates: - After=2017-01-20T17:42:47.789-07:00[America/Denver] This route matches any request after Jan 20, 2017 17:42 Mountain Time (Denver). 这个route与2017年1月20日17：42山地时区（Denver）之后的所有要求相匹配。 4.2 Before Route Predicate Factory 4.2 Before Route断言工厂 The Before Route Predicate Factory takes one parameter, a datetime. This predicate matches requests that happen before the current datetime. Before Route断言工厂需要一个参数，datetime。这个断言匹配在当前日期时间之前发生的请求。 application.yml. 12345678spring: cloud: gateway: routes: - id: before_route uri: http://example.org predicates: - Before=2017-01-20T17:42:47.789-07:00[America/Denver] This route matches any request before Jan 20, 2017 17:42 Mountain Time (Denver). 这个route与2017年1月20日17：42山地时区（Denver）之前的所有要求相匹配。 4.3 Between Route Predicate Factory 4.3 Between Route断言工厂 The Between Route Predicate Factory takes two parameters, datetime1 and datetime2. This predicate matches requests that happen after datetime1 and before datetime2. The datetime2 parameter must be after datetime1. Between Route断言工厂需要两个参数，datetime1和datetime2。这个断言匹配发生在datetime1之后datetime2之前，datetime2必须在datetime1之后的时间。 application.yml. 12345678spring: cloud: gateway: routes: - id: between_route uri: http://example.org predicates: - Between=2017-01-20T17:42:47.789-07:00[America/Denver], 2017-01-21T17:42:47.789-07:00[America/Denver] This route matches any request after Jan 20, 2017 17:42 Mountain Time (Denver) and before Jan 21, 2017 17:42 Mountain Time (Denver). This could be useful for maintenance windows. 这个route与2017年1月20日17:42山地时间（Denver）之后和2017年1月21日17:42山区时间（Denver）之后的任何请求相匹配。这对维护窗口很有用。 4.4 Cookie Route Predicate Factory 4.4 Cookie Route断言工厂 The Cookie Route Predicate Factory takes two parameters, the cookie name and a regular expression. This predicate matches cookies that have the given name and the value matches the regular expression. Cookie Route断言工厂需要有两个参数，cookie名称和一个正则表达式。此断言匹配指定名称且值与正则表达式匹配的cookie。 application.yml. 12345678spring: cloud: gateway: routes: - id: cookie_route uri: http://example.org predicates: - Cookie=chocolate, ch.p This route matches the request has a cookie named chocolate who’s value matches the ch.p regular expression. 这个route匹配具有cookie name为chocolate并且值能够与正则ch.p匹配的请求。 4.5 Header Route Predicate Factory 4.5 Header Route断言工厂 The Header Route Predicate Factory takes two parameters, the header name and a regular expression. This predicate matches with a header that has the given name and the value matches the regular expression. Header Route断言工厂需要有两个参数，header名称和一个正则表达式。此断言匹配指定名称且值与正则表达式匹配的header。 application.yml. 12345678spring: cloud: gateway: routes: - id: header_route uri: http://example.org predicates: - Header=X-Request-Id, \d+ This route matches if the request has a header named X-Request-Id whos value matches the \d+ regular expression (has a value of one or more digits). 这个route匹配具有header name为X-Request-Id并且值能够与正则\d+匹配的请求。 4.6 Host Route Predicate Factory 4.6 Host Route断言工厂 The Host Route Predicate Factory takes one parameter: a list of host name patterns. The pattern is an Ant style pattern with . as the separator. This predicates matches the Host header that matches the pattern. Host Route断言工厂需要有一个参数：hostname模式的列表。此模式是以’.’作为分割的Ant-style模式。此断言匹配与Host header匹配的模式。 application.yml. 12345678spring: cloud: gateway: routes: - id: host_route uri: http://example.org predicates: - Host=**.somehost.org,**.anotherhost.org URI template variables are supported as well, such as {sub}.myhost.org. 也支持URI模板变量，例如{sub}.myhost.org。 This route would match if the request has a Host header has the value www.somehost.org or beta.somehost.org or www.anotherhost.org. 这个route将要匹配Host header具有www.somehost.org或beta.somehost.org或www.anotherhost.org的请求。 This predicate extracts the URI template variables (like sub defined in the example above) as a map of names and values and places it in the ServerWebExchange.getAttributes() with a key defined in ServerWebExchangeUtils.URI_TEMPLATE_VARIABLES_ATTRIBUTE. Those values are then available for use by GatewayFilter Factories 此断言提取的URI模板变量（如上面示例中的sub定义）作为名称和值的映射，并将其放置在ServerWebExchange.getAttributes()中，其键在ServerWebExchangeUtils.URI_TEMPLATE_VARIABLES_ATTRIBUTE中定义。这些值随后可供网关筛选器工厂使用。 4.7 Method Route Predicate Factory 4.7 Method Route 断言工厂 The Method Route Predicate Factory takes one parameter: the HTTP method to match. Method Route需要有一个参数：要匹配的HTTP方法。 application.yml. 12345678spring: cloud: gateway: routes: - id: method_route uri: http://example.org predicates: - Method=GET This route would match if the request method was a GET. 这个route将要匹配HTTP方法为GET的请求。 4.8 Path Route Predicate Factory 4.8 Path Route断言工厂 The Path Route Predicate Factory takes two parameter: a list of Spring PathMatcher patterns and an optional flag to matchOptionalTrailingSeparator. Path Route断言工厂需要有两个参数：一个Spring PathMatcher 模式的列表和一个可选的matchOptionalTrailingSeparator。 application.yml. 12345678spring: cloud: gateway: routes: - id: host_route uri: http://example.org predicates: - Path=/foo/&#123;segment&#125;,/bar/&#123;segment&#125; This route would match if the request path was, for example: /foo/1 or /foo/bar or /bar/baz. 这个route将要匹配请求地址为，如：/foo/1 或 /foo/bar 或 /bar/baz。 This predicate extracts the URI template variables (like segment defined in the example above) as a map of names and values and places it in the ServerWebExchange.getAttributes() with a key defined in ServerWebExchangeUtils.URI_TEMPLATE_VARIABLES_ATTRIBUTE. Those values are then available for use by GatewayFilter Factories 此断言提取的URI模板变量（如上面示例中的segment定义）作为名称和值的映射，并将其放置在ServerWebExchange.getAttributes()中，其键在ServerWebExchangeUtils.URI_TEMPLATE_VARIABLES_ATTRIBUTE中定义。这些值随后可供网关筛选器工厂使用。 A utility method is available to make access to these variables easier. 一个有效的方法来轻松地访问这些变量。 123Map&lt;String, String&gt; uriVariables = ServerWebExchangeUtils.getPathPredicateVariables(exchange);String segment = uriVariables.get(&quot;segment&quot;); 4.9 Query Route Predicate Factory 4.9 Query Route断言工厂 The Query Route Predicate Factory takes two parameters: a required param and an optional regexp. Query Route断言工厂需要有两个参数：一个必须的param和一个可选的regexp。 application.yml. 12345678spring: cloud: gateway: routes: - id: query_route uri: http://example.org predicates: - Query=baz This route would match if the request contained a baz query parameter. 这个route将要匹配query parameter中包含baz的请求。 application.yml. 12345678spring: cloud: gateway: routes: - id: query_route uri: http://example.org predicates: - Query=foo, ba. This route would match if the request contained a foo query parameter whose value matched the ba. regexp, so bar and baz would match. 这个route将要匹配query parameter中包含foo且其值与ba.匹配的请求，如bar,baz会匹配。 4.10 RemoteAddr Route Predicate Factory 4.10 RemoteAddr Route断言工厂 The RemoteAddr Route Predicate Factory takes a list (min size 1) of CIDR-notation (IPv4 or IPv6) strings, e.g. 192.168.0.1/16 (where 192.168.0.1 is an IP address and 16 is a subnet mask). RemoteAddr Route断言工厂采用CIDR表示法（IPv4或IPv6）字符串的列表（最小值为1），例如， 192.168.0.1/16（其中192.168.0.1是IP地址，16是子网掩码）。 application.yml. 12345678spring: cloud: gateway: routes: - id: remoteaddr_route uri: http://example.org predicates: - RemoteAddr=192.168.1.1/24 This route would match if the remote address of the request was, for example, 192.168.1.10. 这个route将要匹配远程地址是192.168.1.10的请求。 4.10.1 Modifying the way remote addresses are resolved 4.10.1 修改远程地址的解析方式 By default the RemoteAddr Route Predicate Factory uses the remote address from the incoming request. This may not match the actual client IP address if Spring Cloud Gateway sits behind a proxy layer. 默认情况下，RemoteAddr Route断言工厂使用传入请求中的远程地址。如果Spring Cloud Gateway位于代理层后面，则可能与实际客户端IP地址不匹配。 You can customize the way that the remote address is resolved by setting a custom RemoteAddressResolver. Spring Cloud Gateway comes with one non-default remote address resolver which is based off of the X-Forwarded-For header, XForwardedRemoteAddressResolver. 您可以通过设置自定义RemoteAddressResolver来自定义解析远程地址的方式。Spring Cloud Gateway附带一个非默认远程地址解析器，它基于X-Forwarded-For header，XForwardedRemoteAddressResolver。 XForwardedRemoteAddressResolver has two static constructor methods which take different approaches to security: XForwardedRemoteAddressResolver有两个静态构造函数方法，它们采用不同的安全方法： XForwardedRemoteAddressResolver::trustAll returns a RemoteAddressResolver which always takes the first IP address found in the X-Forwarded-For header. This approach is vulnerable to spoofing, as a malicious client could set an initial value for the X-Forwarded-For which would be accepted by the resolver. XForwardedRemoteAddressResolver :: trustAll返回一个RemoteAddressResolver，它始终采用X-Forwarded-For header中找到的第一个IP地址。这种方法容易受到欺骗，因为恶意客户端可以为解析器接受的X-Forwarded-For设置初始值。 XForwardedRemoteAddressResolver::maxTrustedIndex takes an index which correlates to the number of trusted infrastructure running in front of Spring Cloud Gateway. If Spring Cloud Gateway is, for example only accessible via HAProxy, then a value of 1 should be used. If two hops of trusted infrastructure are required before Spring Cloud Gateway is accessible, then a value of 2 should be used. 在Spring Cloud Gateway之前XForwardedRemoteAddressResolver :: maxTrustedIndex采用与运行的可信基础架构数相关的索引。例如，如果只能通过HAProxy访问Spring Cloud Gateway，则应使用值1。如果在可访问Spring Cloud Gateway之前需要两跳可信基础架构，则应使用值2。 Given the following header value: 给出以下header值： 1X-Forwarded-For: 0.0.0.1, 0.0.0.2, 0.0.0.3 The maxTrustedIndex values below will yield the following remote addresses. 下面的maxTrustedIndex值将产生以下远程地址。 maxTrustedIndex result [Integer.MIN_VALUE,0] (invalid, IllegalArgumentException during initialization) 1 0.0.0.3 2 0.0.0.2 3 0.0.0.1 [4, Integer.MAX_VALUE] 0.0.0.1 Using Java config: 使用Java config： GatewayConfig.java 123456789101112RemoteAddressResolver resolver = XForwardedRemoteAddressResolver .maxTrustedIndex(1);....route(&quot;direct-route&quot;, r -&gt; r.remoteAddr(&quot;10.1.1.1&quot;, &quot;10.10.1.1/24&quot;) .uri(&quot;https://downstream1&quot;).route(&quot;proxied-route&quot;, r -&gt; r.remoteAddr(resolver, &quot;10.10.1.1&quot;, &quot;10.10.1.1/24&quot;) .uri(&quot;https://downstream2&quot;))]]></content>
+      <categories>
+        <category>文档翻译</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Gateway</tag>
+        <tag>Spring-cloud-gateway</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[3.How It Works]]></title>
     <url>%2F2019%2F02%2F12%2Fspring-cloud-gateway%2F3.How%20It%20Works%2F</url>
     <content type="text"><![CDATA[Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a Route, it is sent to the Gateway Web Handler. This handler runs sends the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line, is that filters may execute logic before the proxy request is sent or after. All “pre” filter logic is executed, then the proxy request is made. After the proxy request is made, the “post” filter logic is executed. 客户端向Spring Cloud Gateway发出请求。如果网关处理Mapping确定请求与路由匹配，则将其发送到网关Web处理程序。此处理器通过特定的请求filter链发送请求。filters被分开的原因是，filters可以在代理请求发送之前或之后执行逻辑。所有的”pre”fliter逻辑，然后进行代理请求，代理请求发送之后，执行”post”fliter逻辑。 URIs defined in routes without a port will get a default port set to 80 and 443 for HTTP and HTTPS URIs respectively. 在没有端口的路由中定义的URI将分别设置为HTTP的80和HTTPS的443为默认端口。]]></content>
@@ -369,18 +382,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install ShadowSocks]]></title>
-    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>ShadowSocks</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[CentOS Install Mysql]]></title>
     <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
@@ -393,15 +394,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python Pip Requirements]]></title>
-    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
-    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
+    <title><![CDATA[CentOS Install ShadowSocks]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
       <categories>
         <category>计算机</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>Pip</tag>
+        <tag>CentOS</tag>
+        <tag>ShadowSocks</tag>
       </tags>
   </entry>
   <entry>
@@ -417,15 +418,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install Nginx]]></title>
-    <url>%2F2018%2F02%2F07%2FCentOS%20Install%20Nginx%2F</url>
-    <content type="text"><![CDATA[1.INSTALL123451 http://nginx.org/en/linux_packages.html##stable2.cd /etc/yum.repos.d/3.nginx.repo4.yum makecache5.yum install nginx.x86_64 2.USE123start: nginxstop: nginx -s stopreload: nginx -s reload]]></content>
+    <title><![CDATA[Python Pip Requirements]]></title>
+    <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
+    <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
       <categories>
         <category>计算机</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
-        <tag>Nginx</tag>
+        <tag>Python</tag>
+        <tag>Pip</tag>
       </tags>
   </entry>
   <entry>
@@ -437,6 +438,18 @@
       </categories>
       <tags>
         <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Nginx]]></title>
+    <url>%2F2018%2F02%2F07%2FCentOS%20Install%20Nginx%2F</url>
+    <content type="text"><![CDATA[1.INSTALL123451 http://nginx.org/en/linux_packages.html##stable2.cd /etc/yum.repos.d/3.nginx.repo4.yum makecache5.yum install nginx.x86_64 2.USE123start: nginxstop: nginx -s stopreload: nginx -s reload]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
 </search>
