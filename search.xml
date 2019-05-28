@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java Jvm]]></title>
+    <url>%2F2019%2F05%2F27%2FJava%20Jvm%2F</url>
+    <content type="text"><![CDATA[1.背景为了更好的使用java进行编程 2.JVM PC程序计数器(线程私有) 一块较小的内存空间, 是当前线程所执行的字节码的行号指示器，每条线程都要有一个独立的程序计数器，这类内存也称为“线程私有”的内存。正在执行 java 方法的话，计数器记录的是虚拟机字节码指令的地址（当前指令的地址）。如果还是 Native 方法，则为空。这个内存区域是唯一一个在虚拟机中没有规定任何 OutOfMemoryError 情况的区域。 虚拟机栈(线程私有) 是描述java方法执行的内存模型，每个方法在执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。 局部变量表： 局部变量表是一组变量值存储空间，用于存放方法参数和方法内部定义的局部变量。 操作数栈： Java虚拟机的解释执行引擎被称为”基于栈的执行引擎”，其中所指的栈就是指－操作数栈。 动态连接： 在一个class文件中，一个方法要调用其他方法，需要将这些方法的符号引用转化为其在内存地址中的直接引用，而符号引用存在于方法区中的运行时常量池。 本地方法栈(线程私有) 本地方法区和 Java Stack 作用类似, 区别是虚拟机栈为执行 Java 方法服务, 而本地方法栈则为Native 方法服务, 如果一个 VM 实现使用 C-linkage 模型来支持 Native 调用, 那么该栈将会是一个C 栈，但 HotSpot VM 直接就把本地方法栈和虚拟机栈合二为一。 堆（Heap-线程共享） 是被线程共享的一块内存区域，创建的对象和数组都保存在 Java 堆内存中，也是垃圾收集器进行垃圾收集的最重要的内存区域。由于现代 VM 采用分代收集算法, 因此 Java 堆从 GC 的角度还可以细分为: 新生代(Eden 区、From Survivor 区和 To Survivor 区)和老年代。 方法区/永久代（线程共享） 即我们常说的永久代(Permanent Generation), 用于存储被 JVM 加载的类信息、常量、静态变量、即时编译器编译后的代码等数据. HotSpot VM把GC分代收集扩展至方法区, 即使用Java堆的永久代来实现方法区, 这样 HotSpot 的垃圾收集器就可以像管理 Java 堆一样管理这部分内存, 而不必为方法区开发专门的内存管理器(永久带的内存回收的主要目标是针对常量池的回收和类型的卸载, 因此收益一般很小)。 3.总结以上可知由于线程有共享的部分，会造成线程不安全的情况。]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Jvm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[经济名词]]></title>
     <url>%2F2019%2F01%2F24%2F%E7%BB%8F%E6%B5%8E%E5%90%8D%E8%AF%8D%2F</url>
     <content type="text"><![CDATA[概念GDP=国内生产总值一个国家(或地区)所有常驻单位，在一定时期内，生产的全部最终产品和服务价值的总和，常被认为是衡量国家(或地区)经济状况的指标。 CPI=居民消费价格指数（consumer price index）居民消费价格指数，是一个反映居民家庭一般所购买的消费品和服务项目价格水平变动情况的宏观经济指标。它是在特定时段内度量一组代表性消费商品及服务项目的价格水平随时间而变动的相对数，是用来反映居民家庭购买消费商品及服务的价格水平的变动情况。 PPI=生产价格指数（Producer Price Index）衡量工业企业产品出厂价格变动趋势和变动程度的指数，是反映某一时期生产领域价格变动情况的重要经济指标，也是制定有关经济政策和国民经济核算的重要依据。生产者物价指数（Producer Price Index, PPI）与CPI不同，主要的目的是衡量企业购买的一篮子物品和劳务的总费用。由于企业最终要把它们的费用以更高的消费价格的形式转移给消费者，所以，通常认为生产物价指数的变动对预测消费物价指数的变动是有用的。 PMI=采购经理指数（Purchasing Managers’ Index）通过对采购经理的月度调查汇总出来的指数，反映了经济的变化趋势。PMI是一套月度发布的、综合性的经济监测指标体系，分为制造业PMI、服务业PMI，也有一些国家建立了建筑业PMI。PMI指数50为荣枯分水线。 M0=流通中现金银行体系以外各个单位的库存现金和居民的手持现金之和。 M1=狭义货币供应量M0加上单位在银行的活期存款。 M2=广义货币供应量M1加上单位在银行的定期存款和城乡居民个人在银行的各项储蓄存款以及证券客户保证金。M2与M1的差额，即单位的定期存款和个人的储蓄存款之和，通常称作准货币。 M0=流通中现金M1=M0+单位活期存款M2=M1+单位定期存款+个人的储蓄存款+证券公司的客户保证金M3=M2+具有高流动性的证券和其它资产]]></content>
@@ -319,18 +331,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install Mysql]]></title>
-    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[CentOS Install ShadowSocks]]></title>
     <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
@@ -340,6 +340,18 @@
       <tags>
         <tag>CentOS</tag>
         <tag>ShadowSocks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Mysql]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Mysql</tag>
       </tags>
   </entry>
   <entry>
