@@ -251,17 +251,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
-    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Java Socket]]></title>
     <url>%2F2018%2F09%2F06%2FJava%20Socket%2F</url>
     <content type="text"><![CDATA[Server.java12345678910111213141516171819202122232425public class Server &#123; public static void main(String[] args) throws IOException &#123; ServerSocket serverSocket = new ServerSocket(8081); while (true) &#123; Socket socket = serverSocket.accept(); new Thread(new Runnable() &#123; @Override public void run() &#123; try &#123; BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String str = &quot;&quot;; while ((str = bufferedReader.readLine()) != null) &#123; if (str.equals(&quot;1&quot;)) &#123; Thread.sleep(5 * 1000); &#125; System.out.println(str); &#125; &#125; catch (IOException | InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; &#125;).start(); &#125; &#125;&#125; Client.java12345678910111213public class Client &#123; public static void main(String[] args) throws IOException &#123; Socket socket = new Socket(&quot;localhost&quot;, 8081); BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in, &quot;UTF-8&quot;)); while (true) &#123; String str = bufferedReader.readLine(); bufferedWriter.write(str); bufferedWriter.write(&quot;\n&quot;); bufferedWriter.flush(); &#125; &#125;&#125; Java Socket源码地址​github.com]]></content>
@@ -271,6 +260,17 @@
       <tags>
         <tag>Java</tag>
         <tag>Socket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
+    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -343,18 +343,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install ShadowSocks]]></title>
-    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>ShadowSocks</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[CentOS Install Mysql]]></title>
     <url>%2F2018%2F02%2F13%2FCentOS%20Install%20Mysql%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223241.http://dev.mysql.com/downloads/repo/yum/ 地址下载相对应rpm包2.rpm -ivh mysql57-community-release-el7-8.noarch.rpm (此时/etc/yum.reps.d/下已经有mysql地址源)3.yum makecache4.yum list | grep mysql(查询mysql-server)5.yum install mysql-community-server.x86_64 进行安装6.service mysqld restart7.cat /var/log/mysqld.log | grep password8.vi /etc/my.cnf ([mysqld] 下增加 validate-password=OFF 关闭密码长度等机制)9.systemctl restart mysqld.service (重启服务)10.mysql -uroot -p (登录mysql)11.SET PASSWORD = PASSWORD(&apos;root&apos;); ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER; flush privileges;12.client端用户命令：GRANT ALL ON *.* TO root@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;(GRANT &lt;privileges&gt; ON &lt;what&gt; TO &lt;user&gt; [IDENTIFIED BY &quot;&lt;password&gt;&quot;] [WITH GRANT OPTION];)(打开MYSQL:service mysqld start关闭MYSQL:service mysqld stop)13.firewall-cmd --zone=public --add-port=3306/tcp --permanent (防火墙) systemctl stop firewalld systemctl start firewalld]]></content>
@@ -364,6 +352,18 @@
       <tags>
         <tag>CentOS</tag>
         <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install ShadowSocks]]></title>
+    <url>%2F2018%2F02%2F13%2FCentOS%20Install%20ShadowSocks%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829yum install zlib-develyum install gccyum install openssl-develwget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xzxz -d Python-2.7.12.tar.xz &amp; tar xvf Python-2.7.12.tartar xvf Python-2.7.12.tarcd Python-2.7.12./configure --with-zlib=/usr/includemake &amp;&amp; make altinstallcd /usr/binmv python python_bakln -s /usr/local/bin/python2.7 ./pythonvi yumcdwget https://bootstrap.pypa.io/get-pip.pypython get-pip.pyyum install m2cryptocdwget https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gztar -xvf libsodium-1.0.11.tar.gzcd libsodium-1.0.11./configuremake &amp;&amp; make installecho /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.confldconfigssserver -c config -d startssserver -c config -d stop]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>ShadowSocks</tag>
       </tags>
   </entry>
   <entry>
