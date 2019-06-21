@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[什么是消息中间件]]></title>
-    <url>%2F2019%2F06%2F19%2F%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[1.什么是消息中间件消息中间件利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型，它可以在分布式环境下扩展进程间的通信。 2.为什么使用消息中间件解耦、异步、削峰虚拟场景：用户注册后，需调用其它系统，发相关的通知短信或邮件。 2.1 解耦图1：后续工作中增加系统E、F、G、H…，A系统工作人员需增加调用E、F、G、H…接口的工作。图2：很好的解决了重复性的工作。 2.2 异步图1 客户端获得返回耗时系统耗时ABCD总耗时串行50505050200并行5050100图2客户端获得返回耗时系统耗时AMQBCD总耗时MQ505055 2.3 削峰图1：如果A系统业务简单处理快速，B、C、D处理速度慢，在遇到大流量时，B、C、D很容易被压垮。图2：将A处理后的任务放到MQ队列，B、C、D系统处理完成一个拿一个。 3.常用消息中间件 产品 kafka RocketMQ RabbitMQ 设计定位 系统间的数据流管道，实时数据处理。例如：常规的消息系统、网站活性跟踪，监控数据，日志收集、处理等 非日志的可靠消息传输。例如：订单，交易，充值，流计算，消息推送，日志流式处理，binglog分发等 可靠消息传输。和RocketMQ类似。 成熟度 日志领域成熟 成熟 成熟 所属社区／公司 Apache Alibaba开发，已加入到Apache下 Mozilla Public License 社区活跃度 高 中 高 API完备性 高 高 高 文档完备性 高 高 高 开发语言 Scala Java Erlang 客户端语言 C/C++、Python、Go、Erlang、.NET、Ruby、Node.js、PHP等 Java Java、C、 C++、 Python、 PHP、Perl 等 持久化方式 磁盘文件 磁盘文件 内存、文件 部署方式 单机／集群 单机／集群 单机／集群 集群管理 zookeeper name server 顺序消费 支持顺序消费但是一台Broker宕机后，就会产生消息乱序(来自网上，尚未找到原因） 支持顺序消费在顺序消息场景下，消费失败时消费队列将会暂停 支持顺序消费 事务消息 不支持 支持 不支持 优点 1、在高吞吐、低延迟、高可用、集群热扩展、集群容错上有非常好的表现2、producer端提供缓存、压缩功能，可节省性能，提高效率。3、提供顺序消费能力4、提供多种客户端语言5、生态完善，在大数据处理方面有大量配套的设施。 1、在高吞吐、低延迟、高可用上有非常好的表现；消息堆积时，性能也很好。2、api、系统设计都更加适在业务处理的场景。3、支持多种消费方式。4、支持broker消息过滤。5、支持事务。6、提供消息顺序消费能力；consumer可以水平扩展，消费能力很强。7、集群规模在50台左右，单日处理消息上百亿；经历过大数据量的考验，比较稳定可靠。 1、在高吞吐量、高可用上较前两者有所不如。2、支持多种客户端语言；支持amqp协议。3、由于erlang语言的特性，性能也比较好; 使用RAM模式时，性能很好。4、管理界面较丰富，在互联网公司也有较大规模的应用; 缺点 1、消费集群数目受到分区数目的限制。2、单机topic多时，性能会明显降低。3、不支持事务 1、相比于kafka，使用者较少，生态不够完善。消息堆积、吞吐率上也有所不如。2、不支持主从自动切换，master失效后，消费者需要一定的时间才能感知。3、客户端只支持Java 1、erlang 语言难度较大。集群不支持动态扩展。2、不支持事务、消息吞吐能力有限3、消息堆积时，性能会明显降低 4.Rabbit术语 术语 解释 Broker RabbbitMQ消息队列代理服务器实体。 Producer 发送消息的应用程序。 Consumer 接收消息的用户程序。 Exchange 交换器，生产者直接将消息发送给交换器。交换器将消息分发给指定的队列。它指定消息按什么规则，路由到哪个队列。 Binding 绑定，指的是交换器和队列之间的关系。它的作用就是把exchange和queue按照路由规则绑定起来。 Routing Key 路由关键字，exchange根据这个关键字进行消息投递。 vhost 虚拟主机，一个broker里可以开设多个vhost，用作不同用户的权限分离。 Channel 消息通道，包含了大量的API可用于编程。在客户端的每个连接里，可建立多个channel，每个channel代表一个会话任务。 Connection 在客户创建一个到某个虚拟主机的连接。 ConnectionFactory 连接工厂类。可以创建一个连接。 5.Rabbit五种模式RabbitMQ五种模式(SIMPLE模式)RabbitMQ五种模式(WORK模式)RabbitMQ五种模式(P/S模式)RabbitMQ五种模式(ROUTING模式)RabbitMQ五种模式(TOPICS模式)]]></content>
+    <title><![CDATA[消息中间件的使用]]></title>
+    <url>%2F2019%2F06%2F19%2F%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[1.什么是消息中间件消息中间件利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型，它可以在分布式环境下扩展进程间的通信。 2.为什么使用消息中间件解耦、异步、削峰虚拟场景：用户注册后，需调用其它系统，发相关的通知短信或邮件。 2.1 解耦图1：后续工作中增加系统E、F、G、H…，A系统工作人员需增加调用E、F、G、H…接口的工作。图2：很好的解决了重复性的工作。 2.2 异步图1 客户端获得返回耗时系统耗时ABCD总耗时串行50505050200并行5050100图2客户端获得返回耗时系统耗时AMQBCD总耗时MQ505055 2.3 削峰图1：如果A系统业务简单处理快速，B、C、D处理速度慢，在遇到大流量时，B、C、D很容易被压垮。图2：将A处理后的任务放到MQ队列，B、C、D系统处理完成一个拿一个。 3.常用消息中间件 产品 kafka RocketMQ RabbitMQ 设计定位 系统间的数据流管道，实时数据处理。例如：常规的消息系统、网站活性跟踪，监控数据，日志收集、处理等 非日志的可靠消息传输。例如：订单，交易，充值，流计算，消息推送，日志流式处理，binglog分发等 可靠消息传输。和RocketMQ类似。 成熟度 日志领域成熟 成熟 成熟 所属社区／公司 Apache Alibaba开发，已加入到Apache下 Mozilla Public License 社区活跃度 高 中 高 API完备性 高 高 高 文档完备性 高 高 高 开发语言 Scala Java Erlang 客户端语言 C/C++、Python、Go、Erlang、.NET、Ruby、Node.js、PHP等 Java Java、C、 C++、 Python、 PHP、Perl 等 持久化方式 磁盘文件 磁盘文件 内存、文件 部署方式 单机／集群 单机／集群 单机／集群 集群管理 zookeeper name server 事务消息 不支持 支持 不支持 优点 1、在高吞吐、低延迟、高可用、集群热扩展、集群容错上有非常好的表现2、producer端提供缓存、压缩功能，可节省性能，提高效率。3、提供顺序消费能力4、提供多种客户端语言5、生态完善，在大数据处理方面有大量配套的设施。 1、在高吞吐、低延迟、高可用上有非常好的表现；消息堆积时，性能也很好。2、api、系统设计都更加适在业务处理的场景。3、支持多种消费方式。4、支持broker消息过滤。5、支持事务。6、提供消息顺序消费能力；consumer可以水平扩展，消费能力很强。7、集群规模在50台左右，单日处理消息上百亿；经历过大数据量的考验，比较稳定可靠。 1、在高吞吐量、高可用上较前两者有所不如。2、支持多种客户端语言；支持amqp协议。3、由于erlang语言的特性，性能也比较好; 使用RAM模式时，性能很好。4、管理界面较丰富，在互联网公司也有较大规模的应用; 缺点 1、消费集群数目受到分区数目的限制。2、单机topic多时，性能会明显降低。3、不支持事务 1、相比于kafka，使用者较少，生态不够完善。消息堆积、吞吐率上也有所不如。2、不支持主从自动切换，master失效后，消费者需要一定的时间才能感知。3、客户端只支持Java 1、erlang 语言难度较大。集群不支持动态扩展。2、不支持事务、消息吞吐能力有限3、消息堆积时，性能会明显降低 4.Rabbit术语 术语 解释 Broker RabbbitMQ消息队列代理服务器实体。 Producer 发送消息的应用程序。 Consumer 接收消息的用户程序。 Exchange 交换器，生产者直接将消息发送给交换器。交换器将消息分发给指定的队列。它指定消息按什么规则，路由到哪个队列。 Binding 绑定，指的是交换器和队列之间的关系。它的作用就是把exchange和queue按照路由规则绑定起来。 Routing Key 路由关键字，exchange根据这个关键字进行消息投递。 vhost 虚拟主机，一个broker里可以开设多个vhost，用作不同用户的权限分离。 Channel 消息通道，包含了大量的API可用于编程。在客户端的每个连接里，可建立多个channel，每个channel代表一个会话任务。 Connection 在客户创建一个到某个虚拟主机的连接。 ConnectionFactory 连接工厂类。可以创建一个连接。 5.Rabbit五种模式RabbitMQ五种模式(SIMPLE模式)RabbitMQ五种模式(WORK模式)RabbitMQ五种模式(P/S模式)RabbitMQ五种模式(ROUTING模式)RabbitMQ五种模式(TOPICS模式) 6.中间件几个问题6.1消息重复消费问题：当Consumer消费完一条消息时，需要向Broker发送ack，如果因为网络等问题Consumer没有成功向Broker发送ack，那么消息将会被再此消费。解决：这就要求我们在消费消息时，需要考虑到幂等性消费（即同一数据调用一次和调用多次结果是一样的）。 6.2消息顺序问题问题：当Producer向Broker发送的消息需要Consumer有顺序的消费。解决：1.一个Consumer消费一个队列。2.多个Consumer对应相应队列，Producer在生产消息时，需要顺序的消息通过一定的规则发送到同一队列。 6.3分布式系统事务问题问题：当系统间调用，希望同时成功或同时回滚的时候。解决：使用mq实现分布式事务-补偿事务一致性分布式事务——消息最终一致性方案RabbitMQ之消息确认机制（事务+Confirm）]]></content>
       <categories>
         <category>计算机</category>
       </categories>
@@ -262,6 +262,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
+    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java Socket]]></title>
     <url>%2F2018%2F09%2F06%2FJava%20Socket%2F</url>
     <content type="text"><![CDATA[Server.java12345678910111213141516171819202122232425public class Server &#123; public static void main(String[] args) throws IOException &#123; ServerSocket serverSocket = new ServerSocket(8081); while (true) &#123; Socket socket = serverSocket.accept(); new Thread(new Runnable() &#123; @Override public void run() &#123; try &#123; BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String str = &quot;&quot;; while ((str = bufferedReader.readLine()) != null) &#123; if (str.equals(&quot;1&quot;)) &#123; Thread.sleep(5 * 1000); &#125; System.out.println(str); &#125; &#125; catch (IOException | InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; &#125;).start(); &#125; &#125;&#125; Client.java12345678910111213public class Client &#123; public static void main(String[] args) throws IOException &#123; Socket socket = new Socket(&quot;localhost&quot;, 8081); BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in, &quot;UTF-8&quot;)); while (true) &#123; String str = bufferedReader.readLine(); bufferedWriter.write(str); bufferedWriter.write(&quot;\n&quot;); bufferedWriter.flush(); &#125; &#125;&#125; Java Socket源码地址​github.com]]></content>
@@ -271,17 +282,6 @@
       <tags>
         <tag>Java</tag>
         <tag>Socket</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RabbitMQ五种模式(WORK模式)]]></title>
-    <url>%2F2018%2F09%2F06%2FRabbitMQ%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F-WORK%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[Send.java 1234567891011121314151617181920212223242526272829public class Send &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); for (int i = 0; i &lt; 50; i++) &#123; String message = &quot;message:\t&quot; + i; channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes()); System.out.println(message); try &#123; Thread.sleep(i * 10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125; channel.close(); connection.close(); &#125;&#125; Recv.java 1234567891011121314151617181920212223242526272829303132public class Recv &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(2 * 1000); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; Recv2.java 12345678910111213141516171819202122232425262728293031323334public class Recv2 &#123; public static String QUEUE_NAME = &quot;test_queue&quot;; public static void main(String[] args) throws IOException, TimeoutException &#123; ConnectionFactory factory = new ConnectionFactory(); factory.setHost(&quot;localhost&quot;); factory.setVirtualHost(&quot;/zhang&quot;); factory.setUsername(&quot;zhang&quot;); factory.setPassword(&quot;zhang&quot;); Connection connection = factory.newConnection(); Channel channel = connection.createChannel(); channel.basicQos(1); channel.queueDeclare( QUEUE_NAME, false, false, false, null ); DefaultConsumer consumer = new DefaultConsumer(channel) &#123; @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot; [x] Received &apos;&quot; + message + &quot;&apos;&quot;); try &#123; Thread.sleep(10); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; channel.basicAck(envelope.getDeliveryTag(), false); &#125; &#125;; channel.basicConsume(QUEUE_NAME, false, consumer); &#125;&#125; build.gradle 123456789101112131415plugins &#123; id &apos;java&apos;&#125;version = &apos;0.0.1-SNAPSHOT&apos;sourceCompatibility = 1.8repositories &#123; mavenCentral()&#125;dependencies &#123; compile group: &apos;com.rabbitmq&apos;, name: &apos;amqp-client&apos;, version: &apos;5.3.0&apos; testCompile group: &apos;junit&apos;, name: &apos;junit&apos;, version: &apos;4.12&apos;&#125; rabbit-mq源码地址​github.com]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -378,18 +378,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS Install Redis]]></title>
-    <url>%2F2018%2F02%2F08%2FCentOS%20Install%20Redis%2F</url>
-    <content type="text"><![CDATA[已安装GCCREDIS下载地址12345678wget http://download.redis.io/releases/redis-3.2.3.tar.gztar xzf redis-3.2.3.tar.gzcd redis-3.2.3&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;make MALLOC=libcfirewall-cmd --zone=public --add-port=6379/tcp --permanent systemctl stop firewalld systemctl start firewalld redis.conf 末尾增加bing 0.0.0.012redis-serverredis-cli -h xxx.xxx.xxx.xxx]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python Pip Requirements]]></title>
     <url>%2F2018%2F02%2F08%2FPython%20Pip%20Requirements%2F</url>
     <content type="text"><![CDATA[1234//导出requirementspip freeze &gt; requirements.txt//导入requirementspip install -r requirements.txt]]></content>
@@ -399,6 +387,18 @@
       <tags>
         <tag>Python</tag>
         <tag>Pip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS Install Redis]]></title>
+    <url>%2F2018%2F02%2F08%2FCentOS%20Install%20Redis%2F</url>
+    <content type="text"><![CDATA[已安装GCCREDIS下载地址12345678wget http://download.redis.io/releases/redis-3.2.3.tar.gztar xzf redis-3.2.3.tar.gzcd redis-3.2.3&lt;make (致命错误：jemalloc/jemalloc.h：没有那个文件或目录)&gt;make MALLOC=libcfirewall-cmd --zone=public --add-port=6379/tcp --permanent systemctl stop firewalld systemctl start firewalld redis.conf 末尾增加bing 0.0.0.012redis-serverredis-cli -h xxx.xxx.xxx.xxx]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>

@@ -111,15 +111,15 @@
   <meta name="description" content="1.什么是消息中间件消息中间件利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型，它可以在分布式环境下扩展进程间的通信。 2.为什么使用消息中间件解耦、异步、削峰虚拟场景：用户注册后，需调用其它系统，发相关的通知短信或邮件。">
 <meta name="keywords" content="MQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是消息中间件">
-<meta property="og:url" content="http://yoursite.com/2019/06/19/什么是消息中间件/index.html">
+<meta property="og:title" content="消息中间件的使用">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/消息中间件的使用/index.html">
 <meta property="og:site_name" content="Simple">
 <meta property="og:description" content="1.什么是消息中间件消息中间件利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型，它可以在分布式环境下扩展进程间的通信。 2.为什么使用消息中间件解耦、异步、削峰虚拟场景：用户注册后，需调用其它系统，发相关的通知短信或邮件。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/post/mq.png">
 <meta property="og:updated_time" content="2019-06-19T01:57:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什么是消息中间件">
+<meta name="twitter:title" content="消息中间件的使用">
 <meta name="twitter:description" content="1.什么是消息中间件消息中间件利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型，它可以在分布式环境下扩展进程间的通信。 2.为什么使用消息中间件解耦、异步、削峰虚拟场景：用户注册后，需调用其它系统，发相关的通知短信或邮件。">
 <meta name="twitter:image" content="http://yoursite.com/images/post/mq.png">
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/19/什么是消息中间件/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/19/消息中间件的使用/">
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>什么是消息中间件 | Simple</title>
+  <title>消息中间件的使用 | Simple</title>
   
 
 
@@ -385,7 +385,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/什么是消息中间件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/消息中间件的使用/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
@@ -402,7 +402,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">什么是消息中间件
+          <h1 class="post-title" itemprop="name headline">消息中间件的使用
               
             
           </h1>
@@ -460,8 +460,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/19/什么是消息中间件/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/06/19/什么是消息中间件/" itemprop="commentCount"></span>
+                <a href="/2019/06/19/消息中间件的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/06/19/消息中间件的使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -579,12 +579,6 @@
 <td></td>
 </tr>
 <tr>
-<td>顺序消费</td>
-<td>支持顺序消费<br>但是一台Broker宕机后，就会产生消息乱序(来自网上，尚未找到原因）</td>
-<td>支持顺序消费<br>在顺序消息场景下，消费失败时消费队列将会暂停</td>
-<td>支持顺序消费</td>
-</tr>
-<tr>
 <td>事务消息</td>
 <td>不支持</td>
 <td>支持</td>
@@ -655,6 +649,9 @@
 </tbody>
 </table>
 <h1 id="5-Rabbit五种模式"><a href="#5-Rabbit五种模式" class="headerlink" title="5.Rabbit五种模式"></a>5.Rabbit五种模式</h1><p><strong><a href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" title="RabbitMQ五种模式(SIMPLE模式)">RabbitMQ五种模式(SIMPLE模式)</a></strong><br><strong><a href="/2018/09/06/RabbitMQ五种模式-WORK模式/" title="RabbitMQ五种模式(WORK模式)">RabbitMQ五种模式(WORK模式)</a></strong><br><strong><a href="/2018/09/07/RabbitMQ五种模式-P-S模式/" title="RabbitMQ五种模式(P/S模式)">RabbitMQ五种模式(P/S模式)</a></strong><br><strong><a href="/2018/09/08/RabbitMQ五种模式-ROUTING模式/" title="RabbitMQ五种模式(ROUTING模式)">RabbitMQ五种模式(ROUTING模式)</a></strong><br><strong><a href="/2018/09/09/RabbitMQ五种模式-TOPICS模式/" title="RabbitMQ五种模式(TOPICS模式)">RabbitMQ五种模式(TOPICS模式)</a></strong></p>
+<h1 id="6-中间件几个问题"><a href="#6-中间件几个问题" class="headerlink" title="6.中间件几个问题"></a>6.中间件几个问题</h1><h2 id="6-1消息重复消费"><a href="#6-1消息重复消费" class="headerlink" title="6.1消息重复消费"></a>6.1消息重复消费</h2><p>问题：<br>当Consumer消费完一条消息时，需要向Broker发送ack，如果因为网络等问题Consumer没有成功向Broker发送ack，那么消息将会被再此消费。<br>解决：<br>这就要求我们在消费消息时，需要考虑到幂等性消费（即同一数据调用一次和调用多次结果是一样的）。</p>
+<h2 id="6-2消息顺序问题"><a href="#6-2消息顺序问题" class="headerlink" title="6.2消息顺序问题"></a>6.2消息顺序问题</h2><p>问题：<br>当Producer向Broker发送的消息需要Consumer有顺序的消费。<br>解决：<br>1.一个Consumer消费一个队列。<br>2.多个Consumer对应相应队列，Producer在生产消息时，需要顺序的消息通过一定的规则发送到同一队列。</p>
+<h2 id="6-3分布式系统事务问题"><a href="#6-3分布式系统事务问题" class="headerlink" title="6.3分布式系统事务问题"></a>6.3分布式系统事务问题</h2><p>问题：<br>当系统间调用，希望同时成功或同时回滚的时候。<br>解决：<br><strong><a href="https://www.javazhiyin.com/29398.html" title="使用mq实现分布式事务-补偿事务一致性" target="_blank" rel="noopener">使用mq实现分布式事务-补偿事务一致性</a></strong><br><strong><a href="https://www.jianshu.com/p/04bad986a4a2" title="使用mq实现分布式事务-补偿事务一致性" target="_blank" rel="noopener">分布式事务——消息最终一致性方案</a></strong><br><strong><a href="https://blog.csdn.net/u013256816/article/details/55515234/" title="RabbitMQ之消息确认机制（事务+Confirm）" target="_blank" rel="noopener">RabbitMQ之消息确认机制（事务+Confirm）</a></strong></p>
 
       
     </div>
@@ -987,7 +984,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是消息中间件"><span class="nav-number">1.</span> <span class="nav-text">1.什么是消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-为什么使用消息中间件"><span class="nav-number">2.</span> <span class="nav-text">2.为什么使用消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-解耦"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-异步"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-削峰"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 削峰</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-常用消息中间件"><span class="nav-number">3.</span> <span class="nav-text">3.常用消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Rabbit术语"><span class="nav-number">4.</span> <span class="nav-text">4.Rabbit术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Rabbit五种模式"><span class="nav-number">5.</span> <span class="nav-text">5.Rabbit五种模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是消息中间件"><span class="nav-number">1.</span> <span class="nav-text">1.什么是消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-为什么使用消息中间件"><span class="nav-number">2.</span> <span class="nav-text">2.为什么使用消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-解耦"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-异步"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-削峰"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 削峰</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-常用消息中间件"><span class="nav-number">3.</span> <span class="nav-text">3.常用消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Rabbit术语"><span class="nav-number">4.</span> <span class="nav-text">4.Rabbit术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Rabbit五种模式"><span class="nav-number">5.</span> <span class="nav-text">5.Rabbit五种模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-中间件几个问题"><span class="nav-number">6.</span> <span class="nav-text">6.中间件几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1消息重复消费"><span class="nav-number">6.1.</span> <span class="nav-text">6.1消息重复消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2消息顺序问题"><span class="nav-number">6.2.</span> <span class="nav-text">6.2消息顺序问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3分布式系统事务问题"><span class="nav-number">6.3.</span> <span class="nav-text">6.3分布式系统事务问题</span></a></li></ol></li></ol></div>
             
 
           </div>
