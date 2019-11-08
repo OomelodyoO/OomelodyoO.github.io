@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -199,7 +199,7 @@
   <!-- Google AdSense end -->
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -209,7 +209,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -380,20 +380,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/java-thread/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Simple">
     </span>
 
@@ -445,7 +445,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
@@ -497,7 +497,7 @@
 
       
         <h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h2><p>线程安全大多数时候很重要。</p>
-<h2 id="2-Thread"><a href="#2-Thread" class="headerlink" title="2.Thread"></a>2.Thread</h2><p>线程（英语：thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。<br><img src="/images/post/java-thread.png" alt=""><br><a id="more"></a></p>
+<h2 id="2-Thread"><a href="#2-Thread" class="headerlink" title="2.Thread"></a>2.Thread</h2><p>线程（英语：thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。<br><img src="/images/post/java-thread.png" alt><br><a id="more"></a></p>
 <h3 id="1-Thread-五种状态"><a href="#1-Thread-五种状态" class="headerlink" title="(1)Thread 五种状态"></a>(1)Thread 五种状态</h3><h4 id="新建状态"><a href="#新建状态" class="headerlink" title="新建状态:"></a>新建状态:</h4><p>使用 new 关键字和 Thread 类或其子类建立一个线程对象后，该线程对象就处于新建状态。它保持这个状态直到程序 start() 这个线程。</p>
 <h4 id="就绪状态"><a href="#就绪状态" class="headerlink" title="就绪状态:"></a>就绪状态:</h4><p>当线程对象调用了start()方法之后，该线程就进入就绪状态。就绪状态的线程处于就绪队列中，要等待JVM里线程调度器的调度。</p>
 <h4 id="运行状态"><a href="#运行状态" class="headerlink" title="运行状态:"></a>运行状态:</h4><p>如果就绪状态的线程获取 CPU 资源，就可以执行 run()，此时线程便处于运行状态。处于运行状态的线程最为复杂，它可以变为阻塞状态、就绪状态和死亡状态。</p>
@@ -725,7 +725,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="ZhiXing Zhang">
             
@@ -877,7 +877,7 @@
                   
                     
                   
-                  <a href="https://www.jianshu.com/u/fd71482a4274" title="简书 &rarr; https://www.jianshu.com/u/fd71482a4274" rel="noopener" target="_blank"><i class="fa fa-fw fa-tags"></i>简书</a>
+                  <a href="https://www.jianshu.com/u/fd71482a4274" title="简书 &rarr; https://www.jianshu.com/u/fd71482a4274" rel="noopener" target="_blank"><i class="fa fa-fw fa-vcard"></i>简书</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -888,7 +888,7 @@
                   
                     
                   
-                  <a href="https://www.zhihu.com/people/zhang-zhi-xing-59/posts" title="知乎 &rarr; https://www.zhihu.com/people/zhang-zhi-xing-59/posts" rel="noopener" target="_blank"><i class="fa fa-fw fa-tags"></i>知乎</a>
+                  <a href="https://www.zhihu.com/people/zhang-zhi-xing-59/posts" title="知乎 &rarr; https://www.zhihu.com/people/zhang-zhi-xing-59/posts" rel="noopener" target="_blank"><i class="fa fa-fw fa-vcard-o"></i>知乎</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -910,7 +910,29 @@
                   
                     
                   
-                  <a href="mailto:2hang2hi8ing@gmail.com" title="E-Mail &rarr; mailto:2hang2hi8ing@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="http://zhangzhixing.win/tools/" title="工具 &rarr; http://zhangzhixing.win/tools/" rel="noopener" target="_blank"><i class="fa fa-fw fa-calculator"></i>工具</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:2hang2hi8ing@gmail.com" title="google &rarr; mailto:2hang2hi8ing@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:2hang2hi8ing@gmail.com" title="sina &rarr; mailto:2hang2hi8ing@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>sina</a>
                 </span>
               
             </div>
