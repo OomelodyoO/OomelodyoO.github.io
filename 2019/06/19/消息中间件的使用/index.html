@@ -440,157 +440,11 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
-<td># 5.Rabbit五种模式</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" title="RabbitMQ五种模式(SIMPLE模式)">RabbitMQ五种模式(SIMPLE模式)</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="/2018/09/06/RabbitMQ五种模式-WORK模式/" title="RabbitMQ五种模式(WORK模式)">RabbitMQ五种模式(WORK模式)</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="/2018/09/07/RabbitMQ五种模式-P-S模式/" title="RabbitMQ五种模式(P/S模式)">RabbitMQ五种模式(P/S模式)</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="/2018/09/08/RabbitMQ五种模式-ROUTING模式/" title="RabbitMQ五种模式(ROUTING模式)">RabbitMQ五种模式(ROUTING模式)</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="/2018/09/09/RabbitMQ五种模式-TOPICS模式/" title="RabbitMQ五种模式(TOPICS模式)">RabbitMQ五种模式(TOPICS模式)</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td># 6.中间件几个问题</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>## 6.1消息重复消费</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>问题：</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>当Consumer消费完一条消息时，需要向Broker发送ack，如果因为网络等问题Consumer没有成功向Broker发送ack，那么消息将会被再此消费。</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>解决：</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>这就要求我们在消费消息时，需要考虑到幂等性消费（即同一数据调用一次和调用多次结果是一样的）。</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>## 6.2消息顺序问题</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>问题：</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>当Producer向Broker发送的消息需要Consumer有顺序的消费。</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>解决：</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1.一个Consumer消费一个队列。</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2.多个Consumer对应相应队列，Producer在生产消息时，需要顺序的消息通过一定的规则发送到同一队列。</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>## 6.3分布式系统事务问题</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>问题：</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>当系统间调用，希望同时成功或同时回滚的时候。</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>解决：</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="https://www.javazhiyin.com/29398.html" target="_blank" rel="noopener" title="使用mq实现分布式事务-补偿事务一致性">使用mq实现分布式事务-补偿事务一致性</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="https://www.jianshu.com/p/04bad986a4a2" target="_blank" rel="noopener" title="使用mq实现分布式事务-补偿事务一致性">分布式事务——消息最终一致性方案</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="https://blog.csdn.net/u013256816/article/details/55515234/" target="_blank" rel="noopener" title="RabbitMQ之消息确认机制（事务+Confirm）">RabbitMQ之消息确认机制（事务+Confirm）</a></strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
+<h1 id="5-Rabbit五种模式"><a href="#5-Rabbit五种模式" class="headerlink" title="5.Rabbit五种模式"></a>5.Rabbit五种模式</h1><p><strong><a href="/2018/09/05/RabbitMQ五种模式-SIMPLE模式/" title="RabbitMQ五种模式(SIMPLE模式)">RabbitMQ五种模式(SIMPLE模式)</a></strong><br><strong><a href="/2018/09/06/RabbitMQ五种模式-WORK模式/" title="RabbitMQ五种模式(WORK模式)">RabbitMQ五种模式(WORK模式)</a></strong><br><strong><a href="/2018/09/07/RabbitMQ五种模式-P-S模式/" title="RabbitMQ五种模式(P/S模式)">RabbitMQ五种模式(P/S模式)</a></strong><br><strong><a href="/2018/09/08/RabbitMQ五种模式-ROUTING模式/" title="RabbitMQ五种模式(ROUTING模式)">RabbitMQ五种模式(ROUTING模式)</a></strong><br><strong><a href="/2018/09/09/RabbitMQ五种模式-TOPICS模式/" title="RabbitMQ五种模式(TOPICS模式)">RabbitMQ五种模式(TOPICS模式)</a></strong></p>
+<h1 id="6-中间件几个问题"><a href="#6-中间件几个问题" class="headerlink" title="6.中间件几个问题"></a>6.中间件几个问题</h1><h2 id="6-1消息重复消费"><a href="#6-1消息重复消费" class="headerlink" title="6.1消息重复消费"></a>6.1消息重复消费</h2><p>问题：<br>当Consumer消费完一条消息时，需要向Broker发送ack，如果因为网络等问题Consumer没有成功向Broker发送ack，那么消息将会被再此消费。<br>解决：<br>这就要求我们在消费消息时，需要考虑到幂等性消费（即同一数据调用一次和调用多次结果是一样的）。</p>
+<h2 id="6-2消息顺序问题"><a href="#6-2消息顺序问题" class="headerlink" title="6.2消息顺序问题"></a>6.2消息顺序问题</h2><p>问题：<br>当Producer向Broker发送的消息需要Consumer有顺序的消费。<br>解决：<br>1.一个Consumer消费一个队列。<br>2.多个Consumer对应相应队列，Producer在生产消息时，需要顺序的消息通过一定的规则发送到同一队列。</p>
+<h2 id="6-3分布式系统事务问题"><a href="#6-3分布式系统事务问题" class="headerlink" title="6.3分布式系统事务问题"></a>6.3分布式系统事务问题</h2><p>问题：<br>当系统间调用，希望同时成功或同时回滚的时候。<br>解决：<br><strong><a href="https://www.javazhiyin.com/29398.html" target="_blank" rel="noopener" title="使用mq实现分布式事务-补偿事务一致性">使用mq实现分布式事务-补偿事务一致性</a></strong><br><strong><a href="https://www.jianshu.com/p/04bad986a4a2" target="_blank" rel="noopener" title="使用mq实现分布式事务-补偿事务一致性">分布式事务——消息最终一致性方案</a></strong><br><strong><a href="https://blog.csdn.net/u013256816/article/details/55515234/" target="_blank" rel="noopener" title="RabbitMQ之消息确认机制（事务+Confirm）">RabbitMQ之消息确认机制（事务+Confirm）</a></strong></p>
 
     </div>
 
@@ -653,7 +507,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是消息中间件"><span class="nav-number">1.</span> <span class="nav-text">1.什么是消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-为什么使用消息中间件"><span class="nav-number">2.</span> <span class="nav-text">2.为什么使用消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-解耦"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-异步"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-削峰"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 削峰</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-常用消息中间件"><span class="nav-number">3.</span> <span class="nav-text">3.常用消息中间件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是消息中间件"><span class="nav-number">1.</span> <span class="nav-text">1.什么是消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-为什么使用消息中间件"><span class="nav-number">2.</span> <span class="nav-text">2.为什么使用消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-解耦"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-异步"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-削峰"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 削峰</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-常用消息中间件"><span class="nav-number">3.</span> <span class="nav-text">3.常用消息中间件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Rabbit五种模式"><span class="nav-number">4.</span> <span class="nav-text">5.Rabbit五种模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-中间件几个问题"><span class="nav-number">5.</span> <span class="nav-text">6.中间件几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1消息重复消费"><span class="nav-number">5.1.</span> <span class="nav-text">6.1消息重复消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2消息顺序问题"><span class="nav-number">5.2.</span> <span class="nav-text">6.2消息顺序问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3分布式系统事务问题"><span class="nav-number">5.3.</span> <span class="nav-text">6.3分布式系统事务问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
