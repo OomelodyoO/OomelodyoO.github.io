@@ -18,8 +18,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1268029752802194"
-            crossorigin="anonymous"></script>
+
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Simple">
@@ -153,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -224,6 +223,230 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/06/%E3%80%90MYSQL%E3%80%91EXPLAIN%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%8BTYPE%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/06/%E3%80%90MYSQL%E3%80%91EXPLAIN%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%8BTYPE%E5%88%97/" class="post-title-link" itemprop="url">【MYSQL】EXPLAIN执行计划之TYPE列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-02-06 09:26:45 / 修改时间：09:32:24" itemprop="dateCreated datePublished" datetime="2024-02-06T09:26:45+08:00">2024-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE user</span><br><span class="line">(</span><br><span class="line">id    INT PRIMARY KEY,</span><br><span class="line">name  NVARCHAR(20),</span><br><span class="line">hobby NVARCHAR(20),</span><br><span class="line">INDEX (hobby)</span><br><span class="line">) ENGINE = innodb;</span><br><span class="line"></span><br><span class="line">INSERT INTO user</span><br><span class="line">VALUES (1, &#x27;tom&#x27;, &#x27;football&#x27;);</span><br><span class="line">INSERT INTO user</span><br><span class="line">VALUES (2, &#x27;dick&#x27;, &#x27;basketball&#x27;);</span><br><span class="line">INSERT INTO user</span><br><span class="line">VALUES (3, &#x27;lovin&#x27;, &#x27;volleyball&#x27;);</span><br><span class="line">INSERT INTO user</span><br><span class="line">VALUES (4, &#x27;wanda&#x27;, &#x27;badminton&#x27;);</span><br><span class="line">INSERT INTO user</span><br><span class="line">VALUES (5, &#x27;stuart&#x27;, &#x27;tennis&#x27;);</span><br><span class="line">CREATE TABLE user_money</span><br><span class="line">(</span><br><span class="line">uid   INT PRIMARY KEY,</span><br><span class="line">money INT</span><br><span class="line">) ENGINE = innodb;</span><br><span class="line"></span><br><span class="line">INSERT INTO user_money</span><br><span class="line">VALUES (1, 268);</span><br><span class="line">INSERT INTO user_money</span><br><span class="line">VALUES (2, 12846);</span><br><span class="line">INSERT INTO user_money</span><br><span class="line">VALUES (3, 4856);</span><br><span class="line">INSERT INTO user_money</span><br><span class="line">VALUES (4, 3489);</span><br><span class="line">INSERT INTO user_money</span><br><span class="line">VALUES (5, 489123);</span><br></pre></td></tr></table></figure>
+
+<p>所有英文来源于MYSQL官网</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION optimizer_switch =&#x27;index_merge=off,index_merge_union=off,index_merge_sort_union=off,index_merge_intersection=off,engine_condition_pushdown=off,index_condition_pushdown=off,mrr=off,mrr_cost_based=off,block_nested_loop=off,batched_key_access=off,materialization=off,semijoin=off,loosescan=off,firstmatch=off,duplicateweedout=off,subquery_materialization_cost_based=off,use_index_extensions=off,condition_fanout_filter=off,derived_merge=off,prefer_ordering_index=off&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>const</p>
+<p>The table has at most one matching row, which is read at the start of the query. Because there is only one row, values<br>from the column in this row can be regarded as constants by the rest of the optimizer. const tables are very fast<br>because they are read only once.</p>
+<p>const is used when you compare all parts of a PRIMARY KEY or UNIQUE index to constant values. In the following queries,<br>tbl_name can be used as a const table:</p>
+<p>SELECT * FROM tbl_name WHERE primary_key=1;</p>
+<p>SELECT * FROM tbl_name<br>WHERE primary_key_part1=1 AND primary_key_part2=2;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * FROM user u WHERE u.id = 1;</span><br></pre></td></tr></table></figure>
+
+<p>eq_ref</p>
+<p>One row is read from this table for each combination of rows from the previous tables. Other than the system and const<br>types, this is the best possible join type. It is used when all parts of an index are used by the join and the index is<br>a PRIMARY KEY or UNIQUE NOT NULL index.</p>
+<p>eq_ref can be used for indexed columns that are compared using the = operator. The comparison value can be a constant or<br>an expression that uses columns from tables that are read before this table. In the following examples, MySQL can use an<br>eq_ref join to process ref_table:</p>
+<p>SELECT * FROM ref_table,other_table<br>WHERE ref_table.key_column=other_table.column;</p>
+<p>SELECT * FROM ref_table,other_table<br>WHERE ref_table.key_column_part1=other_table.column<br>AND ref_table.key_column_part2=1;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * FROM user u</span><br><span class="line">LEFT JOIN user_money um ON u.id = um.uid WHERE u.id = um.uid;</span><br></pre></td></tr></table></figure>
+
+<p>ref</p>
+<p>All rows with matching index values are read from this table for each combination of rows from the previous tables. ref<br>is used if the join uses only a leftmost prefix of the key or if the key is not a PRIMARY KEY or UNIQUE index (in other<br>words, if the join cannot select a single row based on the key value). If the key that is used matches only a few rows,<br>this is a good join type.</p>
+<p>ref can be used for indexed columns that are compared using the = or &lt;=&gt; operator. In the following examples, MySQL can<br>use a ref join to process ref_table:</p>
+<p>SELECT * FROM ref_table WHERE key_column=expr;</p>
+<p>SELECT * FROM ref_table,other_table<br>WHERE ref_table.key_column=other_table.column;</p>
+<p>SELECT * FROM ref_table,other_table<br>WHERE ref_table.key_column_part1=other_table.column<br>AND ref_table.key_column_part2=1;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * FROM user u</span><br><span class="line">LEFT JOIN user_money um ON u.id = um.uid</span><br><span class="line">WHERE u.hobby = &#x27;1&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>range</p>
+<p>Only rows that are in a given range are retrieved, using an index to select the rows. The key column in the output row<br>indicates which index is used. The key_len contains the longest key part that was used. The ref column is NULL for this<br>type.</p>
+<p>range can be used when a key column is compared to a constant using any of the =, &lt;&gt;, &gt;, &gt;=, &lt;, &lt;=, IS NULL, &lt;=&gt;,<br>BETWEEN, LIKE, or IN() operators:</p>
+<p>SELECT * FROM tbl_name<br>WHERE key_column = 10;</p>
+<p>SELECT * FROM tbl_name<br>WHERE key_column BETWEEN 10 and 20;</p>
+<p>SELECT * FROM tbl_name<br>WHERE key_column IN (10,20,30);</p>
+<p>SELECT * FROM tbl_name<br>WHERE key_part1 = 10 AND key_part2 IN (10,20,30);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * FROM user u WHERE u.id &gt; 1;</span><br></pre></td></tr></table></figure>
+
+<p>index</p>
+<p>The index join type is the same as ALL, except that the index tree is scanned. This occurs two ways:</p>
+<p>If the index is a covering index for the queries and can be used to satisfy all data required from the table, only the<br>index tree is scanned. In this case, the Extra column says Using index. An index-only scan usually is faster than ALL<br>because the size of the index usually is smaller than the table data.</p>
+<p>A full table scan is performed using reads from the index to look up data rows in index order. Uses index does not<br>appear in the Extra column.</p>
+<p>MySQL can use this join type when the query uses only columns that are part of a single index.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT u.hobby FROM user u;</span><br></pre></td></tr></table></figure>
+
+<p>ALL</p>
+<p>A full table scan is done for each combination of rows from the previous tables. This is normally not good if the table<br>is the first table not marked const, and usually very bad in all other cases. Normally, you can avoid ALL by adding<br>indexes that enable row retrieval from the table based on constant values or column values from earlier tables.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT u.* FROM user u;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/06/%E3%80%90MYSQL%E3%80%91EXPLAIN%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%8BSELECT-TYPE%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZhiXing Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/06/%E3%80%90MYSQL%E3%80%91EXPLAIN%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%8BSELECT-TYPE%E5%88%97/" class="post-title-link" itemprop="url">【MYSQL】EXPLAIN执行计划之SELECT_TYPE列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-02-06 09:18:14 / 修改时间：09:32:24" itemprop="dateCreated datePublished" datetime="2024-02-06T09:18:14+08:00">2024-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>注意先把优化器关了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION optimizer_switch =&#x27;index_merge=off,index_merge_union=off,index_merge_sort_union=off,index_merge_intersection=off,engine_condition_pushdown=off,index_condition_pushdown=off,mrr=off,mrr_cost_based=off,block_nested_loop=off,batched_key_access=off,materialization=off,semijoin=off,loosescan=off,firstmatch=off,duplicateweedout=off,subquery_materialization_cost_based=off,use_index_extensions=off,condition_fanout_filter=off,derived_merge=off,prefer_ordering_index=off&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>子查询执行过程</p>
+<p>1.从外层查询中取出一个元组（即一行），将元组相关列的值传给内层查询。</p>
+<p>2.执行内层查询，得到子查询操作的值。</p>
+<p>3.外查询根据子查询返回的结果或结果集得到满足条件的行。</p>
+<p>4.然后外层查询取出下一个元组重复做步骤1-3，直到外层的元组全部处理完毕。</p>
+<p>SIMPLE</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line">SELECT *</span><br><span class="line">FROM contents;</span><br></pre></td></tr></table></figure>
+
+
+<p>PRIMARY</p>
+<p>UNION</p>
+<p>UNION RESULT</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line">SELECT * FROM contents</span><br><span class="line">UNION</span><br><span class="line">SELECT * FROM contents;</span><br></pre></td></tr></table></figure>
+
+
+<p>PRIMARY</p>
+<p>DEPENDENT SUBQUERY</p>
+<p>DEPENDENT UNION</p>
+<p>UNION RESULT</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line">SELECT *</span><br><span class="line">FROM contents c</span><br><span class="line">WHERE c.post_id in (</span><br><span class="line">SELECT c1.post_id FROM contents c1</span><br><span class="line">UNION</span><br><span class="line">SELECT c2.post_id FROM contents c2</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>PRIMARY</p>
+<p>SUBQUERY</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line">SELECT c.*, (SELECT post_id FROM contents WHERE post_id = 2)</span><br><span class="line">FROM contents c;</span><br></pre></td></tr></table></figure>
+
+<p>PRIMARY</p>
+<p>DEPENDENT SUBQUERY</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line">SELECT c.*</span><br><span class="line">FROM contents c</span><br><span class="line">WHERE c.post_id IN (SELECT p.id FROM posts p);</span><br></pre></td></tr></table></figure>
+
+<p>DERIVED 出现在 FROM 子句中的子查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line">SELECT c.*</span><br><span class="line">FROM (SELECT * FROM contents) c;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -896,212 +1119,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/12/12/%E5%87%AF%E5%88%A9%E5%85%AC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/12/12/%E5%87%AF%E5%88%A9%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">凯利公式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-12-12 08:50:00" itemprop="dateCreated datePublished" datetime="2018-12-12T08:50:00+08:00">2018-12-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>某项投资：</p>
-<table>
-<thead>
-<tr>
-<th>数据</th>
-<th>F</th>
-<th>f</th>
-<th>p</th>
-<th>q</th>
-<th>b</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>概率</td>
-<td>拥有资本总值</td>
-<td>应投资本比值</td>
-<td>获胜概率</td>
-<td>失败概率(1 - p)</td>
-<td>赔率</td>
-</tr>
-</tbody></table>
-<p>那么应不应该投资？应该如何投资？</p>
-<h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><h3 id="第k-1次投资结果"><a href="#第k-1次投资结果" class="headerlink" title="第k+1次投资结果"></a>第k+1次投资结果</h3><p>成功投资：$F_{k+1} = F_k(1+bf)$<br>失败投资：$F_{k+1} = F_k(1-f)$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/12/12/%E5%87%AF%E5%88%A9%E5%85%AC%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/12/11/%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ZhiXing Zhang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/12/11/%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/" class="post-title-link" itemprop="url">大数定律</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-12-11 14:40:00" itemprop="dateCreated datePublished" datetime="2018-12-11T14:40:00+08:00">2018-12-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在数学与统计学中，大数定律又称大数法则、大数律，是描述相当多次数重复实验的结果的定律。根据这个定律知道，样本数量越多，则其算术平均值就越趋近期望值。</p>
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><h3 id="1-抛掷一颗均匀的6面的骰子，六面出现概率为"><a href="#1-抛掷一颗均匀的6面的骰子，六面出现概率为" class="headerlink" title="1)抛掷一颗均匀的6面的骰子，六面出现概率为"></a>1)抛掷一颗均匀的6面的骰子，六面出现概率为</h3><table>
-<thead>
-<tr>
-<th>数据</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>概率</td>
-<td>1/6</td>
-<td>1/6</td>
-<td>1/6</td>
-<td>1/6</td>
-<td>1/6</td>
-<td>1/6</td>
-</tr>
-</tbody></table>
-<p>数学期望 = 1 × (1/6) + 2 × (1/6) + 3 × (1/6) + 4 × (1/6) + 5 × (1/6) + 6 × (1/6)</p>
-<p>数学期望 = 3.5</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/12/11/%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1115,7 +1132,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
